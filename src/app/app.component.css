@@ -16,3 +16,71 @@ body {
   bottom: 0;
   top: 0;
 }
+
+div {
+  width: 50%;
+}
+
+#barraNavegacion{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  float: left;
+  width: 100%;
+}
+
+#creacion{
+  padding-top: 8px;
+  margin: 0;
+  height: 8%;
+  width: 87%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /*border-bottom: 1px black ridge;*/
+  
+}
+
+#creacion a:link {
+  text-decoration: none;
+  color: #009999;
+}
+
+#creacion a:visited {
+  text-decoration: none;
+  color: #009999;
+}
+
+#creacion a:hover {
+  text-decoration: none;
+  color:white;
+}
+
+a .btnNavbar {
+  height:40px;
+  width: 160%;
+  color: #009999; 
+  background-color: white;
+  border: ridge 1.1px #0F1923;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;    
+}
+
+a .btnNavbar:hover {
+  color: white;
+  background-color: #009999;
+  border: ridge 1.1px #009999;    
+}
+
+#tablaField{
+  padding: 0;
+  margin: 0;
+  height: 90%;
+  width: 100%;
+  float: left;
+  background-color: white;
+  overflow-y: scroll; 
+  overflow-x: hidden;
+}

@@ -22,7 +22,8 @@
     "@types/arcgis-js-api": "^4.10.0",
     "core-js": "^2.5.4",
     "esri-loader": "^2.6.0",
-    "rxjs": "~6.3.3",
+    "rxjs": "^6.4.0",
+    "rxjs-compat": "^6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

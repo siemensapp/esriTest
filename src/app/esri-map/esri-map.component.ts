@@ -11,8 +11,21 @@
   limitations under the License.
 */
 
-import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { loadModules } from 'esri-loader';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import {
+  loadModules
+} from 'esri-loader';
+import {
+  DataRetrieverService
+} from '../data-retriever.service';
 import esri = __esri; // Esri TypeScript Types
 
 @Component({
@@ -22,7 +35,7 @@ import esri = __esri; // Esri TypeScript Types
 })
 export class EsriMapComponent implements OnInit {
 
-  @Output() mapLoadedEvent = new EventEmitter<boolean>();
+  @Output() mapLoadedEvent = new EventEmitter < boolean > ();
 
   // The <div> where we will place the map
   @ViewChild('mapViewNode') private mapViewEl: ElementRef;
@@ -34,10 +47,11 @@ export class EsriMapComponent implements OnInit {
    * _loaded provides map loaded status
    */
   private _zoom = 10;
-  private _center: Array<number> = [0.1278, 51.5074];
+  private _center: Array < number > = [0.1278, 51.5074];
   private _basemap = 'streets';
   private _loaded = false;
-  private _datos = {};
+  private dataMarkers = {};
+  private workers = {};
 
 
   get mapLoaded(): boolean {
@@ -54,11 +68,11 @@ export class EsriMapComponent implements OnInit {
   }
 
   @Input()
-  set center(center: Array<number>) {
+  set center(center: Array < number > ) {
     this._center = center;
   }
 
-  get center(): Array<number> {
+  get center(): Array < number > {
     return this._center;
   }
 
@@ -71,40 +85,86 @@ export class EsriMapComponent implements OnInit {
     return this._basemap;
   }
 
-  constructor() { }
 
-  async getDataActiveWorkers() {
-    try {
-      const [EsriRequest] = await loadModules([
-        'esri/request'
-      ]);
-      
-      const url = "http://localhost:3000/api/workers";
-      const options = {
-        query: {
-          f: "json"
-        },
-        responseType: "json"
-      };
-      console.log("Entered");
-      await new EsriRequest({url: url, options: options}).then((response) => {
-        this._datos = response;
-      })      
+  constructor(private dataRetriever: DataRetrieverService) {}
 
-    } catch(error) {
-      console.log("Datos : ", this._datos);
-      console.log("Falla en recuperacion de datos :", error)
+  // Funcion que crea el boton
+  createLocationBtn() {
+    let boton = document.createElement("button");
+    boton.style.height = "32px";
+    boton.style.width = "32px";
+    boton.style.backgroundColor = "#fff";
+    boton.style.border = "none";
+    boton.style.color = "#6e6e6e";
+    boton.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
+    boton.style.fontSize = "20px";
+    boton.onmouseover = function () {
+      boton.style.backgroundColor = "lightGrey";
+      boton.style.cursor = 'pointer';
     }
+    boton.onmouseout = function () {
+      boton.style.backgroundColor = "#fff";
+    }
+    return boton;
+  }
+
+  preparePoints(data) {
+    let points = [];
+    for (let x of data) {
+      // Extract data
+      let auxJson = {};
+      let nombre = x.NombreE;
+      let iniciales = nombre.split(" ");
+      let coords = x.CoordenadasEspecialista.split(",");
+      let latitude = coords[1];
+      let longitude = coords[0];
+      auxJson["nombre"] = {nombre: nombre};
+      auxJson["pointMap"] = {
+        type: "point",
+        longitude: longitude,
+        latitude: latitude
+      };
+      auxJson["markerSymbol"] = {
+        type: "simple-marker",
+        color: [226, 119, 40],
+        size: "25px",
+        outline: {
+          color: [255, 255, 255],
+          width: 2
+        }
+      };
+      auxJson["markerSymbol2"] = {
+        type: "simple-marker",
+        color: [255, 255, 255],
+        size: "40px",
+        outline: {
+          color: [100, 119, 40],
+          width: 3
+        }
+      };
+
+      auxJson["textSymbol"] = {
+        type: "text",
+        text: iniciales.length == 4 ? String(iniciales[0][0] + iniciales[2][0]) : String(iniciales[0][0] + iniciales[1][0])
+      };
+      points.push(auxJson);
+    }
+    return points;
+  }
+
+  async prepareWorkers() {
+    let results = await this.dataRetriever.getData("https://c4be78dc.ngrok.io/api/workers");
+    return this.preparePoints(results);
   }
 
   async initializeMap() {
     try {
-
-      this.getDataActiveWorkers();
       // Load the modules for the ArcGIS API for JavaScript
-      const [EsriMap, EsriMapView] = await loadModules([
+      const [EsriMap, EsriMapView, Point, Graphic] = await loadModules([
         'esri/Map',
-        'esri/views/MapView'
+        'esri/views/MapView',
+        "esri/geometry/Point",
+        "esri/Graphic"
       ]);
 
       // Configure the Map
@@ -122,7 +182,39 @@ export class EsriMapComponent implements OnInit {
         map: map
       };
 
-      return new EsriMapView(mapViewProperties);
+      // Se crea la vista del mapa
+      let view = new EsriMapView(mapViewProperties)
+      // Se crea el boton
+      let boton = this.createLocationBtn();
+      // Se agrega a la vista
+      let points = await this.prepareWorkers();
+      for (let x of points) {
+        console.log(x);
+        view.graphics.add(
+          new Graphic({
+            geometry: x.pointMap,
+            symbol: x.markerSymbol2,
+            popupTemplate: {
+              title: x.nombre.nombre,
+              content: "Servicio de Field Service<br>[ " + x.pointMap.longitude + ", " + x.pointMap.latitude + " ]<br>"
+            }
+          })
+        );
+        view.graphics.add(
+          new Graphic({
+            geometry: x.pointMap,
+            symbol: x.textSymbol,
+            popupTemplate: {
+              title: x.nombre.nombre,
+              content: "Servicio de Field Service<br>[ " + x.pointMap.longitude + ", " + x.pointMap.latitude + " ]<br>"
+            }
+          })
+        );
+
+      }
+      view.ui.add(boton, "top-left");
+
+      return view;
 
     } catch (error) {
       console.log('EsriLoader: ', error);

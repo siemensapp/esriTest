@@ -1,3 +1,44 @@
-<p>
-  asignacion works!
-</p>
+<div id="titulo">
+  <p>CREAR ASIGNACION</p>
+  <br>
+</div>
+<form id="formulario">
+<div class="headerCombo">
+Seleccionar Especialista
+</div>
+<div class="espacioCombo">
+<select class="combo">
+  <option *ngFor = "let resultado of ResultadosField" value={{resultado.IdEspecialista}}>{{resultado.NombreE}}</option>
+</select>
+</div>
+<div class="headerCombo">
+  Seleccionar Status
+</div>
+<div class="espacioCombo">
+  <select class="combo">
+    <option *ngFor = "let resultado of ResultadosField" value={{resultado.IdEspecialista}}>{{resultado.NombreE}}</option>
+</select>
+</div>
+<div id="headerFechas">Fechas de la Asignacion</div>
+<div id="fechas">
+<div>
+<input class="estiloFechas" type="date" name="fechaInicio" id="fechaI">
+</div>
+<div>
+<input class="estiloFechas" type="date" name="fechaFin" id="fechaF">
+</div>
+</div>
+<div id="infoContacto">
+<div id="name"> Nombre Contacto
+<input type="text" name="nombreContacto" id="nContacto" autocomplete="off">
+</div>
+<div id="cel"> Telefono Contacto
+<input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off">
+</div>
+</div>
+<div id="descripcion"> Descripcion Trabajo
+<textarea name="descripcionAsignacion" id="desc" autocomplete="off"></textarea>
+</div>
+
+<button (click)="enviarDatos()" id="enviar">Agregar Asignacion</button><br>
+</form>

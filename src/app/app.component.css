@@ -18,7 +18,7 @@ body {
 }
 
 div {
-  width: 50%;
+  width: 40%;
 }
 
 #barraNavegacion{
@@ -40,6 +40,11 @@ div {
   justify-content: space-around;
   /*border-bottom: 1px black ridge;*/
   
+}
+
+#home{
+  cursor: pointer;
+  size: 9px;
 }
 
 #creacion a:link {

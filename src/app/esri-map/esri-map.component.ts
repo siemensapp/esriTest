@@ -153,7 +153,7 @@ export class EsriMapComponent implements OnInit {
   }
 
   async prepareWorkers() {
-    let results = await this.dataRetriever.getData("https://c4be78dc.ngrok.io/api/workers");
+    let results = await this.dataRetriever.getData("https://0ebc135f.ngrok.io/api/workers");
     return this.preparePoints(results);
   }
 

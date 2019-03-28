@@ -1,0 +1,121 @@
+.combo{
+    height:30px;
+    width: 80%; 
+    background-color: white;
+    border: ridge 1.1px #0F1923;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;  
+    align-content: center;
+    margin-bottom: 30px; 
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.espacioCombo{
+    display: flex;
+    margin-left: 10%;
+}
+
+#titulo{
+    font-size: 22px;
+    font-weight: 600;  
+    align-content: center;
+    margin-left: 30%;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.headerCombo{
+    margin-left: 10%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+#headerFechas{
+    text-align: center;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#fechas{
+    margin-top: 2%;
+    margin-left: 16%;
+    margin-right: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.estiloFechas{
+    width : 160px;
+    height: 30px;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#infoContacto{
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 18%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#name{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+#nContacto{
+    height: 30px;
+    width: 130%;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#cel{
+    margin-left: 20%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+#tContacto{
+    height: 30px;
+    width: 80%;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#descripcion{
+    margin-top: 5%;
+    margin-left: 10%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+#desc{
+    width: 79%;
+    height: 60px;    
+}
+
+#enviar{
+    margin-top: 5%;
+    margin-left: 25%;
+    width: 40%;
+    height: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: black; 
+    background-color: white;
+    border: ridge 1.1px #0F1923;
+    cursor: pointer;
+}
+
+#enviar:hover{
+    color: white;
+    background-color: #0F1923;
+    border: ridge 1.1px #0F1923; 
+}

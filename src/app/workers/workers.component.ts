@@ -32,7 +32,7 @@ export class WorkersComponent implements OnInit {
   constructor(private httpService: HttpClient) { }
   Resultados : JSON[];
   ngOnInit() {
-    this.httpService.get('http://c4be78dc.ngrok.io/api/workersList').subscribe(
+    this.httpService.get('http://0ebc135f.ngrok.io/api/workersList').subscribe(
       data => {
         this.Resultados = data as JSON[];
       }

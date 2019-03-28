@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import {DataRetrieverService} from '../data-retriever.service';
+import * as env from '../../assets/variables';
 
 @Component({
   selector: 'app-asignacion',
@@ -8,6 +11,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AsignacionComponent implements OnInit {
 
+    //infoUbicacion = "";
+    finalCoords = [];
   enviarDatos(){
     var datos1 = document.forms["formulario"].elements[0].innerText;
     var datos2 = document.forms["formulario"].elements[1].innerText;
@@ -16,7 +21,7 @@ export class AsignacionComponent implements OnInit {
     var datos5 = document.forms["formulario"].elements[4].value;
     var datos6 = document.forms["formulario"].elements[5].value;
     var datos7 = document.forms["formulario"].elements[6].value;
-    //var formData = new FormData(datos);
+
     var datos = {"NombreE" : datos1,
                  "NombreS" : datos2,
                  "fechaInicio" : datos3,
@@ -31,15 +36,23 @@ export class AsignacionComponent implements OnInit {
                   console.log(res);
                 });
   }
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService) { }
   ResultadosField : JSON[];
   ngOnInit() {
-    this.httpService.get('http://0ebc135f.ngrok.io/api/workersList').subscribe(
-      data => {
-        this.ResultadosField = data as JSON[];
-        console.log(this.ResultadosField);
-      }
-    )
+    var fechaHoy= new Date().toISOString();
+    //this.DataRetriever.infoUbicacion.subscribe(infoUbicacion => this.infoUbicacion = infoUbicacion);
+    this.DataRetriever.finalCoords.subscribe(finalCoords => this.finalCoords = finalCoords);
+    
+    this.DataRetriever.getData(env.url+'/api/workersList').then(data => {
+      this.ResultadosField = data as JSON[];
+      console.log(this.ResultadosField);
+    })
+    // this.httpService.get(env.url+'/api/workersList').subscribe(
+    //   data => {
+    //     this.ResultadosField = data as JSON[];
+    //     console.log(this.ResultadosField);
+    //   }
+    // )
   }
 
 }

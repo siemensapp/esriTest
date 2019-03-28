@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 
@@ -8,6 +8,10 @@ import 'rxjs/add/operator/map';
   providedIn: 'root'
 })
 export class DataRetrieverService {
+  private infoSource= new BehaviorSubject("");
+  private coordsSource= new BehaviorSubject([]);
+  finalCoords = this.coordsSource.asObservable();
+  infoUbicacion = this.infoSource.asObservable();
   constructor( private http: HttpClient){ }
 
   getData( url: string ) {
@@ -18,5 +22,12 @@ export class DataRetrieverService {
           resolve(data);
         })
     })
+  }
+
+  obtenerUbicacion(coordenadas: string){
+    this.infoSource.next(coordenadas);
+    let aux = this.infoSource.value.split(",");
+    this.coordsSource.next([ String(aux[0] + "," + aux[1]), aux[2]  ])
+    console.log(this.coordsSource.value);
   }
 }

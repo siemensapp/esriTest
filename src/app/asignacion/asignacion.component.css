@@ -101,6 +101,13 @@
     height: 60px;    
 }
 
+#labelSitio{
+    margin-top: 5%;
+    margin-left: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
 #enviar{
     margin-top: 5%;
     margin-left: 25%;

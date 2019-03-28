@@ -28,10 +28,12 @@ import {
 } from '../data-retriever.service';
 import * as env from '../../assets/variables';
 import esri = __esri; // Esri TypeScript Types
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-esri-map',
   templateUrl: './esri-map.component.html',
+  //template: '<app-asignacion [coordenadasSitio]=coordenadasSitio><app-asignacion>',
   styleUrls: ['./esri-map.component.css']
 })
 export class EsriMapComponent implements OnInit {
@@ -158,14 +160,19 @@ export class EsriMapComponent implements OnInit {
     return this.preparePoints(results);
   }
 
+  setUbicacion(coords: string) {
+    this.dataRetriever.obtenerUbicacion(coords);
+  }
+
   async initializeMap() {
     try {
       // Load the modules for the ArcGIS API for JavaScript
-      const [EsriMap, EsriMapView, Point, Graphic] = await loadModules([
+      const [EsriMap, EsriMapView, Point, Graphic, Search] = await loadModules([
         'esri/Map',
         'esri/views/MapView',
         "esri/geometry/Point",
-        "esri/Graphic"
+        "esri/Graphic",
+        "esri/widgets/Search"
       ]);
 
       // Configure the Map
@@ -215,6 +222,20 @@ export class EsriMapComponent implements OnInit {
       }
       view.ui.add(boton, "top-left");
 
+      var busqueda = new Search({
+        view : view
+      })
+   
+      
+      
+      busqueda.on("select-result", (event) => {
+        var coordenadasSitio = String(event.result.feature.geometry.latitude + "," + event.result.feature.geometry.longitude + "," + event.result.name);
+        this.setUbicacion(coordenadasSitio);
+      })
+
+      view.ui.add(busqueda, "top-right");
+      
+
       return view;
 
     } catch (error) {
@@ -232,8 +253,11 @@ export class EsriMapComponent implements OnInit {
     });
   }
 
+  infoUbicacion="";
+  
   ngOnInit() {
     // Initialize MapView and return an instance of MapView
+    this.dataRetriever.infoUbicacion.subscribe(infoUbicacion => this.infoUbicacion = infoUbicacion);
     this.initializeMap().then((mapView) => {
       this.houseKeeping(mapView);
     });

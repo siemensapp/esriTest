@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import * as env from '../../assets/variables';
 
 @Component({
   selector: 'app-workers',
@@ -32,7 +33,7 @@ export class WorkersComponent implements OnInit {
   constructor(private httpService: HttpClient) { }
   Resultados : JSON[];
   ngOnInit() {
-    this.httpService.get('http://0ebc135f.ngrok.io/api/workersList').subscribe(
+    this.httpService.get(env.url + '/api/workersList').subscribe(
       data => {
         this.Resultados = data as JSON[];
       }

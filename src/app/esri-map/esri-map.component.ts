@@ -26,6 +26,7 @@ import {
 import {
   DataRetrieverService
 } from '../data-retriever.service';
+import * as env from '../../assets/variables';
 import esri = __esri; // Esri TypeScript Types
 
 @Component({
@@ -153,7 +154,7 @@ export class EsriMapComponent implements OnInit {
   }
 
   async prepareWorkers() {
-    let results = await this.dataRetriever.getData("https://c4be78dc.ngrok.io/api/workers");
+    let results = await this.dataRetriever.getData(env.url + "/api/workers");
     return this.preparePoints(results);
   }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import * as env from '../../assets/variables';
+import Swal from 'sweetalert2'; 
+import { DataRetrieverService} from '../data-retriever.service';
 
 @Component({
   selector: 'app-workers',
@@ -29,8 +31,34 @@ export class WorkersComponent implements OnInit {
         return '#A04B00';
     }    
   }
+  
+  borrar(IdEspecialista: number, NombreE: string){
+    
+    Swal.fire({
+      type: "warning",
+      title: "Seguro desea borrar este especialista?",
+      text: "Esta operacion es irreversible",
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      confirmButtonText: "BORRAR",
+      cancelButtonText: "CANCELAR",
+      html: NombreE
+    }).then((result) => {
+        if(result.value){
+          var url= env.url+'/api/deleteWorker/'+IdEspecialista;
+          this.dataRetriever.borrarEspecialista(url);
+          console.log("Borrado papa");
+          Swal.fire(
+            'Borrado',
+            NombreE,
+            'success'
+          )
+        }
+    });
+  }
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient, private dataRetriever: DataRetrieverService) { }
   Resultados : JSON[];
   ngOnInit() {
     this.httpService.get(env.url + '/api/workersList').subscribe(

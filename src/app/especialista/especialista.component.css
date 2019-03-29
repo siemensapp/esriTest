@@ -1,0 +1,146 @@
+#titulo{
+    font-size: 22px;
+    font-weight: 600;  
+    align-content: center;
+    margin-left: 23%;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#subirVerFoto{
+    width: 30%;
+    height: 220px;
+    margin-left: 5%;
+    float: left;
+}
+
+#campoFoto{
+    height: 200px;
+    width: 100%;
+    border: ridge 1.1px #0F1923;
+}
+
+#campoImagen{
+    width: 100%;
+    height: auto;
+}
+
+#fileInput{
+    height:0px;
+    visibility: hidden;
+    overflow:hidden;
+    color: white;
+    background-color: white;
+    border: ridge 0px white;
+    width: 0%;
+}
+
+#subirFoto{
+    margin-top: 3%;
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: black; 
+    background-color: white;
+    border: ridge 1.1px #0F1923;
+    cursor: pointer;
+}
+
+#subirFoto:hover{
+    color: white;
+    background-color: #0F1923;
+    border: ridge 1.1px #0F1923; 
+}
+
+#IdNombreTecnica{
+    margin-left: 40%;
+}
+
+.headers{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+.campos{
+    height: 30px;
+    width: 80%;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 10%;
+}
+
+#comboTecnica{
+    height: 35px;
+    width: 81%; 
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;  
+    align-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#demasDatos{
+    margin-left: 5%;
+    margin-top: 10%;
+    height: 250px;
+    width: 90%;
+}
+
+#primeraLinea{
+    display: flex;
+}
+
+#headerFecha{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    height: 20px;
+    width: 30%;
+    float: left;
+}
+
+#fechaN{
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 10%;
+}
+
+#headerCeCo{
+    margin-left: 8%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    height: 20px;
+    width: 100%;    
+}
+
+#CeCo{
+    height: 29px;
+    width: 80%;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 10%;
+}
+
+#headerGID{
+    margin-left: 0%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    height: 20px;
+    width: 80%;
+    float:right;
+}
+
+#GID{
+    height: 28px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 10%;
+}

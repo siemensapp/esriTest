@@ -1,3 +1,40 @@
-<p>
-  especialista works!
-</p>
+<div id="titulo">
+  <p>AGREGAR NUEVO ESPECIALISTA</p>
+  <br>
+</div>
+<div id="subirVerFoto">
+  <div id="campoFoto"><img id="campoImagen"/></div>
+  <input type="file" id="fileInput" name="fileInput" />
+  <input type="button" id="subirFoto" value="Subir Imagen" (click)="subirArchivo();" />
+</div>
+<div id="IdNombreTecnica">
+  <div class="headers">ID Especialista</div>
+  <input type="number" class="campos"/>
+  <div class="headers">Nombre</div>
+  <input type="text" class="campos"/>
+  <div class="headers">Tecnica</div>
+  <select id="comboTecnica">
+    <option value=1>VFD</option>
+    <option value=2>BT</option>
+    <option value=3>AUT</option>
+    <option value=4>AOS</option>
+    <option value=5>MOT</option>
+  </select>
+</div>
+<div id="demasDatos">
+<div id="primeraLinea">
+<div id="headerFecha"> Fecha Nacimiento<br>
+  <input type="date" name="fechaNacimiento" id="fechaN">
+</div>
+<div id=headerCeCo> CeCo <br>
+  <input type="text" id="CeCo"/>
+</div>
+<div id=headerGID> GID <br>
+  <input type="text" id="GID"/>
+</div>
+</div>
+
+<div id="segundaLinea">
+
+</div>
+</div>

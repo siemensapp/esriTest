@@ -16,7 +16,14 @@ Seleccionar Especialista
 </div>
 <div class="espacioCombo">
   <select class="combo">
-    <option *ngFor = "let resultado of ResultadosField" value={{resultado.IdEspecialista}}>{{resultado.NombreE}}</option>
+    <option value=1>En Servicio</option>
+    <option value=2>Compensatorio</option>
+    <option value=3>Vacaciones</option>
+    <option value=4>Disponible</option>
+    <option value=5>Incapacidad</option>
+    <option value=6>Permiso</option>
+    <option value=7>Capacitacion</option>
+    <option value=8>Disponibilidad FDS</option>
 </select>
 </div>
 <div id="headerFechas">Fechas de la Asignacion</div>

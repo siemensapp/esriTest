@@ -30,4 +30,15 @@ export class DataRetrieverService {
     this.coordsSource.next([ String(aux[0] + "," + aux[1]), aux[2]  ])
     console.log(this.coordsSource.value);
   }
+
+  borrarEspecialista(url: string)
+  {
+    return new Promise(resolve => {
+      this.http.get(url)
+        .map(results => results)
+        .subscribe(data => {
+          resolve(data);
+        })
+    })
+  }
 }

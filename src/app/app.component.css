@@ -38,13 +38,21 @@ div {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   /*border-bottom: 1px black ridge;*/
   
 }
 
 #home{
+  align-items: center;
   cursor: pointer;
-  size: 9px;
+  font-size: 30px;
+  outline: none;
+  color:darkgray;
+}
+
+#home:hover{
+  color: black;
 }
 
 #creacion a:link {

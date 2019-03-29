@@ -108,6 +108,10 @@
     font-size: 14px;
 }
 
+#ubicacion{
+    font-style: italic;
+}
+
 #enviar{
     margin-top: 5%;
     margin-left: 25%;

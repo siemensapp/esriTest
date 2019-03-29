@@ -1,3 +1,6 @@
+a,button{
+    outline: none;
+}
 .sobreTabla {
     display: flex;
     height: 15px;
@@ -47,14 +50,24 @@
     margin-right: 10px;  
 }
 
-.tablaRight {
+.tablaRight{
     display: flex;
     color: #879baa;
     align-items: center;
-    padding: 30px;   
+    padding: 30px;
+    float: right;
 }
 
-.tablaRight i:hover{
+.tablaRight button:hover{
     cursor: pointer;
     color: #0F1923;
+    font-size: 25px;
 }
+
+.tablaRight button{
+    color: #879baa;
+    border: none;
+    background-color: white;
+}
+
+

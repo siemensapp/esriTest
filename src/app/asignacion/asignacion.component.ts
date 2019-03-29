@@ -39,11 +39,11 @@ export class AsignacionComponent implements OnInit {
   constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService) { }
   ResultadosField : JSON[];
   ngOnInit() {
-    var fechaHoy= new Date().toISOString();
     //this.DataRetriever.infoUbicacion.subscribe(infoUbicacion => this.infoUbicacion = infoUbicacion);
     this.DataRetriever.finalCoords.subscribe(finalCoords => this.finalCoords = finalCoords);
-    
-    this.DataRetriever.getData(env.url+'/api/workersList').then(data => {
+    // var fechaHoy=new Date();
+    // document.getElementById("fechaI").setAttribute("value", String(fechaHoy.getFullYear()+"-0"+(fechaHoy.getMonth()+1)+"-"+fechaHoy.getDate()));
+      this.DataRetriever.getData(env.url+'/api/allWorkers').then(data => {
       this.ResultadosField = data as JSON[];
       console.log(this.ResultadosField);
     })

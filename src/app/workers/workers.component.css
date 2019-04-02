@@ -1,3 +1,12 @@
+#animacion {
+    animation-name: deslizar;
+    animation-duration: 0.4s;
+}
+    
+@keyframes deslizar {
+    from {width: 30%}
+    to {width: 100%}
+}
 a,button{
     outline: none;
 }
@@ -27,7 +36,7 @@ a,button{
     height: auto;
     display: flex;
     align-items: center;
-    color: #009999;
+    color: black;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
     justify-content: space-between;

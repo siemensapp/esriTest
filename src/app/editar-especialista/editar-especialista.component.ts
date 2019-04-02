@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DataRetrieverService} from '../data-retriever.service';
 import * as env from '../../assets/variables';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-editar-especialista',
@@ -43,13 +45,15 @@ export class EditarEspecialistaComponent implements OnInit {
                   console.log(res);
                 });
   }
-  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService) { }
+  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService, private ActivatedRoute: ActivatedRoute) { }
   ResultadoField : JSON;
   ngOnInit() {
-    this.DataRetriever.getEspecialista(env.url+'/api/editWorker').then(data => {
-      this.ResultadoField = data as JSON;
-      console.log(this.ResultadoField);
-    })
+    var Ruta = this.ActivatedRoute.paramMap.pipe(map((params: ParamMap) => window.history.state))
+    console.log(Ruta);
+    // this.DataRetriever.getEspecialista(env.url+'/api/editWorker').then(data => {
+    //   this.ResultadoField = data as JSON;
+    //   console.log(this.ResultadoField);
+    // })
   }
 
 }

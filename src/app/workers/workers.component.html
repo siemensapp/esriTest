@@ -1,3 +1,4 @@
+<div id="animacion">
 <div *ngFor = "let resultado of Resultados">
   <div class="sobreTabla"><i class="fas fa-circle" [ngStyle]="{'color': setColor(resultado.NombreS)}"></i>{{resultado.NombreS}}</div>
   <div class="tabla">
@@ -10,7 +11,8 @@
       </div>
     </div>
     <div class="tablaRight">
-      <button class="editar"><i class="fas fa-edit"></i></button>
+      <a routerLink='/formularioEdicionEspecialista' [state]="{NombreE: resultado.NombreE}"><button class="editar"><i class="fas fa-edit"></i></button></a>
       <button class="eliminar" (click)="borrar(resultado.IdEspecialista, resultado.NombreE)"><i class="fas fa-trash-alt"></i></button>
   </div>
+</div>
 </div>

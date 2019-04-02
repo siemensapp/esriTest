@@ -41,4 +41,14 @@ export class DataRetrieverService {
         })
     })
   }
+
+  getEspecialista(url: string){
+    return new Promise(resolve => {
+      this.http.get(url)
+        .map(results => results)
+        .subscribe(data => {
+          resolve(data);
+        })
+    })
+  }
 }

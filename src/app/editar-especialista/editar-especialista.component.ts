@@ -1,25 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {DataRetrieverService} from '../data-retriever.service';
 import * as env from '../../assets/variables';
 
 @Component({
-  selector: 'app-especialista',
-  templateUrl: './especialista.component.html',
-  styleUrls: ['./especialista.component.css']
+  selector: 'app-editar-especialista',
+  templateUrl: './editar-especialista.component.html',
+  styleUrls: ['./editar-especialista.component.css']
 })
-export class EspecialistaComponent implements OnInit {
+export class EditarEspecialistaComponent implements OnInit {
 
-  constructor(private httpService: HttpClient) { }
-  subirArchivo(){
-    var click = document.getElementById("fileInput");   
-    click.click();
-    click.onchange = function(event){
-        var campoImagen = document.getElementById("campoImagen");
-        //campoImagen.src = URL.createObjectURL(event.target.files[0]);
-    };
-  }
-
-  agregarEspecialista(){
+  editarEspecialista(){
+    
     var datos1 = document.forms["formulario"].elements[0];
     var datos2 = document.forms["formulario"].elements[1];
     var datos3 = document.forms["formulario"].elements[2];
@@ -46,12 +38,18 @@ export class EspecialistaComponent implements OnInit {
                  "TarjetaIngresoArgos" : datos12
                 };
     console.log(datos);
-    this.httpService.post(env.url + '/api/addEspecialista', datos).toPromise()
+    this.httpService.post(env.url + '/api/editEspecialista', datos).toPromise()
                 .then((res) => {
                   console.log(res);
                 });
   }
+  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService) { }
+  ResultadoField : JSON;
   ngOnInit() {
+    this.DataRetriever.getEspecialista(env.url+'/api/editWorker').then(data => {
+      this.ResultadoField = data as JSON;
+      console.log(this.ResultadoField);
+    })
   }
 
 }

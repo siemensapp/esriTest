@@ -52,7 +52,8 @@ div {
 }
 
 #home:hover{
-  color: black;
+  color: #009999;
+  font: bold;
 }
 
 #creacion a:link {
@@ -78,8 +79,9 @@ a .btnNavbar {
   border: ridge 1.1px #0F1923;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 600;    
+  font-weight: 600;
 }
+
 
 a .btnNavbar:hover {
   color: white;

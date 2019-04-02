@@ -1,3 +1,13 @@
+#animacion{
+animation-name: deslizar;
+animation-duration: 0.4s;
+}
+
+@keyframes deslizar {
+from {width: 30%}
+to {width: 100%}
+}
+
 .combo{
     height:30px;
     width: 80%; 

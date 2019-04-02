@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AsignacionComponent } from './asignacion/asignacion.component';
 import { EspecialistaComponent } from './especialista/especialista.component';
 import { WorkersComponent } from './workers/workers.component';
+import { EditarEspecialistaComponent } from './editar-especialista/editar-especialista.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { WorkersComponent } from './workers/workers.component';
     EsriMapComponent,
     AsignacionComponent,
     EspecialistaComponent,
-    WorkersComponent
+    WorkersComponent,
+    EditarEspecialistaComponent
   ],
   imports: [
     BrowserModule,

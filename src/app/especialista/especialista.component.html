@@ -1,7 +1,9 @@
+<div id="animacion">
 <div id="titulo">
   <p>AGREGAR NUEVO ESPECIALISTA</p>
   <br>
 </div>
+<form id="formulario">
 <div id="subirVerFoto">
   <div id="campoFoto"><img id="campoImagen"/></div>
   <input type="file" id="fileInput" name="fileInput" />
@@ -12,6 +14,8 @@
   <input type="number" class="campos"/>
   <div class="headers">Nombre</div>
   <input type="text" class="campos"/>
+  <div class="headers">Celular</div>
+  <input type="number" class="campos"/>
   <div class="headers">Tecnica</div>
   <select id="comboTecnica">
     <option value=1>VFD</option>
@@ -35,6 +39,17 @@
 </div>
 
 <div id="segundaLinea">
-
+  <div id="headerCedula"> Cedula Ciudadania<br>
+    <input type="number" name="cedula" id="cedulaC">
+  </div>
+  <div id="headerLugarE"> Lugar Expedicion C.C.<br>
+    <input type="text" name="lugar" id="lugarE">
+  </div>
+  <div id="headerTarjetaIA"> Tarjeta Ingreso Argos<br>
+    <input type="text" name="tarjetaIA" id="tarjetaIA">
+  </div>
 </div>
+</div>
+</form>
+<button (click)="agregarEspecialista()" id="enviar">Crear Especialista</button><br>
 </div>

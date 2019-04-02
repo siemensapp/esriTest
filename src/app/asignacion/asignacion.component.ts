@@ -31,7 +31,7 @@ export class AsignacionComponent implements OnInit {
                  "Descripcion" : datos7
                 };
     console.log(datos);
-    this.httpService.post('http://0ebc135f.ngrok.io/api/setAssignment', datos).toPromise()
+    this.httpService.post(env.url+'/api/setAssignment', datos).toPromise()
                 .then((res) => {
                   console.log(res);
                 });

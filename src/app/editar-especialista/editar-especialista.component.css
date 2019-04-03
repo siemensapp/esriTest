@@ -12,7 +12,7 @@
     font-size: 22px;
     font-weight: 600;  
     align-content: center;
-    margin-left: 23%;
+    margin-left: 33%;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -230,4 +230,9 @@
     background-color: #0F1923;
     border: ridge 1.1px #0F1923; 
 }
+
+#resultadoImagen{
+    display: none;
+}
+
 

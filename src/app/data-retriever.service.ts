@@ -10,8 +10,10 @@ import 'rxjs/add/operator/map';
 export class DataRetrieverService {
   private infoSource= new BehaviorSubject("");
   private coordsSource= new BehaviorSubject([]);
+  private especialistaSource = new BehaviorSubject({});
   finalCoords = this.coordsSource.asObservable();
   infoUbicacion = this.infoSource.asObservable();
+  infoEspecialista = this.especialistaSource.asObservable();
   constructor( private http: HttpClient){ }
 
   getData( url: string ) {
@@ -42,13 +44,7 @@ export class DataRetrieverService {
     })
   }
 
-  getEspecialista(url: string){
-    return new Promise(resolve => {
-      this.http.get(url)
-        .map(results => results)
-        .subscribe(data => {
-          resolve(data);
-        })
-    })
+  getEspecialista(info: JSON){
+    this.especialistaSource.next(info);
   }
 }

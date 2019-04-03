@@ -23,7 +23,6 @@ export class EspecialistaComponent implements OnInit {
         campoImagen.src = URL.createObjectURL(event.target.files[0]);
         //Crear version base 64 de la img
         var fileReader = new FileReader();
-        var imagen64b: string;
         fileReader.addEventListener("load", function(e){
            
            document.getElementById("resultadoImagen").innerHTML = e.target.result;
@@ -51,7 +50,7 @@ export class EspecialistaComponent implements OnInit {
                  "NombreE" : datos4,
                  "Celular" : datos5,
                  "IdTecnica" : datos6,
-                 "fechaNacimiento" : datos7,
+                 "FechaNacimiento" : datos7,
                  "CeCo" : datos8,
                  "GID" : datos9,
                  "CedulaCiudadania" : datos10,

@@ -1,23 +1,23 @@
 <div id="animacion">
   <div id="titulo">
-    <p>Editar a</p>
+    <p>Editar a {{infoEspecialista['NombreE'].split(" ")[0]}}</p>
     <br>
   </div>
   <form id="formulario">
   <div id="subirVerFoto">
-    <div id="campoFoto"><img id="campoImagen" /></div>
+    <div id="campoFoto"><img id="campoImagen" src="data:image/png;base64,{{infoEspecialista['FotoBase64']}}"/></div>
     <input type="file" id="fileInput" name="fileInput" />
-    <input type="button" id="subirFoto" value="Subir Imagen" (click)="subirArchivo();" />
+    <input type="button" id="subirFoto" value="Subir Imagen" (click)="subirArchivo()" />
   </div>
   <div id="IdNombreTecnica">
     <div class="headers">ID Especialista</div>
-    <input type="number" class="campos" value=""/>
+    <input type="number" class="campos" value="{{infoEspecialista['IdEspecialista']}}" disabled/>
     <div class="headers">Nombre</div>
-    <input type="text" class="campos" value=""/>
+    <input type="text" class="campos" value="{{infoEspecialista['NombreE']}}"/>
     <div class="headers">Celular</div>
-    <input type="number" class="campos" value=""/>
+    <input type="number" class="campos" value="{{infoEspecialista['Celular']}}"/>
     <div class="headers">Tecnica</div>
-    <select id="comboTecnica">
+    <select id="comboTecnica" value="{{infoEspecialista['IdTecnica']}}">
       <option value=1>VFD</option>
       <option value=2>BT</option>
       <option value=3>AUT</option>
@@ -28,28 +28,30 @@
   <div id="demasDatos">
     <div id="primeraLinea">
       <div id="headerFecha"> Fecha Nacimiento<br>
-        <input type="date" name="fechaNacimiento" id="fechaN">
+        <input type="date" name="fechaNacimiento" id="fechaN" value="{{infoEspecialista['FechaNacimiento'].split('T')[0]}}">
       </div>
       <div id=headerCeCo> CeCo <br>
-        <input type="text" id="CeCo" value=""/>
+        <input type="text" id="CeCo" value="{{infoEspecialista['CeCo']}}"/>
       </div>
       <div id=headerGID> GID <br>
-        <input type="text" id="GID" value=""/>
+        <input type="text" id="GID" value="{{infoEspecialista['GID']}}"/>
       </div>
     </div>
 
     <div id="segundaLinea">
       <div id="headerCedula"> Cedula Ciudadania<br>
-        <input type="number" name="cedula" id="cedulaC" value="">
+        <input type="number" name="cedula" id="cedulaC" value="{{infoEspecialista['CedulaCiudadania']}}">
       </div>
       <div id="headerLugarE"> Lugar Expedicion C.C.<br>
-        <input type="text" name="lugar" id="lugarE" value="">
+        <input type="text" name="lugar" id="lugarE" value="{{infoEspecialista['LugarExpedicion']}}">
       </div>
       <div id="headerTarjetaIA"> Tarjeta Ingreso Argos<br>
-        <input type="text" name="tarjetaIA" id="tarjetaIA" value="">
+        <input type="text" name="tarjetaIA" id="tarjetaIA" value="{{infoEspecialista['TarjetaIngresoArgos']}}">
       </div>
     </div>
   </div>
   </form>
   <button (click)="editarEspecialista()" id="enviar">Modificar Especialista</button><br>
 </div>
+<div id="resultadoImagen"></div>
+

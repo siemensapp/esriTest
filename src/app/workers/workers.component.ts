@@ -31,6 +31,11 @@ export class WorkersComponent implements OnInit {
         return '#A04B00';
     }    
   }
+
+  getInfoEspecialista(resultado: JSON){
+
+    this.dataRetriever.getEspecialista(resultado);
+  }
   
   borrar(IdEspecialista: number, NombreE: string){
     

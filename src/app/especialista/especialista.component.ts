@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import * as env from '../../assets/variables';
-import { callbackify } from 'util';
-import { NOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core/src/view/provider';
+import Swal from 'sweetalert2'; 
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-especialista',
@@ -12,7 +13,7 @@ import { NOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core/src/view/pr
 
 export class EspecialistaComponent implements OnInit {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient, private router: Router) { }
   
   subirArchivo(){
     var click = document.getElementById("fileInput");   
@@ -58,9 +59,26 @@ export class EspecialistaComponent implements OnInit {
                  "TarjetaIngresoArgos" : datos12,
                  "Foto" : document.getElementById("resultadoImagen").innerHTML
                 };
+
     this.httpService.post(env.url + '/api/createWorker', datos).toPromise()
                 .then((res) => {
+                  console.log(datos);
                   console.log(res);
+                  if(res == "true"){
+                      Swal.fire(
+                       'Especialista Agregado',
+                       datos4,
+                       'success'
+                      )
+                      this.router.navigate(['']);
+                  }
+                  else{
+                    Swal.fire(
+                      'Error agregando a',
+                      datos4,
+                      'error'
+                    )  
+                  }
                 });
   }
 

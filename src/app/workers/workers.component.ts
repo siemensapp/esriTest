@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import { DataRetrieverService} from '../data-retriever.service';
+import { Router } from '@angular/router';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-workers',
@@ -52,18 +54,30 @@ export class WorkersComponent implements OnInit {
     }).then((result) => {
         if(result.value){
           var url= env.url+'/api/deleteWorker/'+IdEspecialista;
-          this.dataRetriever.borrarEspecialista(url);
-          console.log("Borrado papa");
-          Swal.fire(
-            'Borrado',
-            NombreE,
-            'success'
-          )
+          this.dataRetriever.borrarEspecialista(url).then((respuesta) => {
+            console.log(respuesta);
+            if(respuesta == "true"){
+                Swal.fire(
+                  'Especialista borrado',
+                  NombreE,
+                  'success'
+                ).then(()=> location.reload())
+                
+            }
+          else{
+            Swal.fire(
+              'Error al borrar a',
+              NombreE,
+              'error'
+            )
+          }
+          });
+          
         }
     });
   }
 
-  constructor(private httpService: HttpClient, private dataRetriever: DataRetrieverService) { }
+  constructor(private httpService: HttpClient, private dataRetriever: DataRetrieverService, private router: Router) { }
   Resultados : JSON[];
   ngOnInit() {
     this.httpService.get(env.url + '/api/workersList').subscribe(

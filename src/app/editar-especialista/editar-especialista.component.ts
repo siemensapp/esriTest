@@ -3,7 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {DataRetrieverService} from '../data-retriever.service';
 import * as env from '../../assets/variables';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import {map} from 'rxjs/operators';
+import Swal from 'sweetalert2'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-especialista',
@@ -64,9 +65,25 @@ export class EditarEspecialistaComponent implements OnInit {
      this.httpService.post(env.url + '/api/editWorker', datos).toPromise()
                  .then((res) => {
                    console.log(res);
+                   
+                if(res == "true"){
+                    Swal.fire(
+                     'Especialista Modificado',
+                     datos4,
+                     'success'
+                    )
+                    this.router.navigate(['']);
+                }
+                else{
+                  Swal.fire(
+                    'Error Modificando a',
+                    datos4,
+                    'error'
+                  )  
+                }
                  });
   }
-  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService, private ActivatedRoute: ActivatedRoute) { }
+  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService, private ActivatedRoute: ActivatedRoute, private router: Router) { }
   ResultadoField : JSON;
   ngOnInit() {
     this.DataRetriever.infoEspecialista.subscribe(infoEspecialista => this.infoEspecialista = infoEspecialista);

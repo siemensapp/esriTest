@@ -212,20 +212,45 @@
     margin-bottom: 10%;
 }
 
+#botones{
+    display: flex;
+    margin-right: 10%;
+    margin-left: 5%;
+}
+
 #enviar{
     margin-top: 5%;
-    margin-left: 30%;
-    width: 40%;
+    margin-left: 5%;
+    width: 50%;
     height: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
     color: black; 
     background-color: white;
-    border: ridge 1.1px #0F1923;
+    border: ridge 1.4px #0F1923;
     cursor: pointer;
 }
 
 #enviar:hover{
+    color: white;
+    background-color: #0F1923;
+    border: ridge 1.1px #0F1923; 
+}
+
+#cancelar{
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 50%;
+    height: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: black; 
+    background-color: white;
+    border: ridge 1.4px #0F1923;
+    cursor: pointer;
+}
+
+#cancelar:hover{
     color: white;
     background-color: #0F1923;
     border: ridge 1.1px #0F1923; 

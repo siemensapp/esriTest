@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DataRetrieverService} from '../data-retriever.service';
 import * as env from '../../assets/variables';
+import Swal from 'sweetalert2'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asignacion',
@@ -35,9 +37,24 @@ export class AsignacionComponent implements OnInit {
     this.httpService.post(env.url+'/api/setAssignment', datos).toPromise()
                 .then((res) => {
                   console.log(res);
+                  if(res == "true"){
+                    Swal.fire(
+                     'Asignacion Creada',
+                     this.infoUbicacion.split(",")[2],
+                     'success'
+                    )
+                    this.router.navigate(['']);
+                }
+                else{
+                  Swal.fire(
+                    'Error Creando Asignacion',
+                    'Es posible que una asignacion para este especialista ya exista en esas fechas',
+                    'error'
+                  )  
+                }
                  });
   }
-  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService) { }
+  constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService, private router: Router) { }
   ResultadosField : JSON[];
   ngOnInit() {
     this.DataRetriever.infoUbicacion.subscribe(infoUbicacion => this.infoUbicacion = infoUbicacion);

@@ -7,6 +7,32 @@
     from {width: 30%}
     to {width: 100%}
 }
+
+#pickDate{
+    width: 40%;
+    height: 20px;
+    margin-left: 30%;
+    margin-bottom: 1%;    
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#pickDate:hover{
+    border: 2px inset #009999;
+    border-radius: 10px;
+}
+
+#pickDate::-webkit-clear-button{
+    display:none;
+}
+
+#pickDate::-webkit-inner-spin-button{
+    display:none;
+}
+
+
 a,button{
     outline: none;
 }
@@ -39,7 +65,7 @@ a,button{
     color: black;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 
 .tablaLeft {
@@ -63,7 +89,7 @@ a,button{
     display: flex;
     color: #879baa;
     align-items: center;
-    padding: 30px;
+    padding: 20px;
     float: right;
 }
 

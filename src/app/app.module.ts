@@ -8,6 +8,7 @@ import { AsignacionComponent } from './asignacion/asignacion.component';
 import { EspecialistaComponent } from './especialista/especialista.component';
 import { WorkersComponent } from './workers/workers.component';
 import { EditarEspecialistaComponent } from './editar-especialista/editar-especialista.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { EditarEspecialistaComponent } from './editar-especialista/editar-especi
     AsignacionComponent,
     EspecialistaComponent,
     WorkersComponent,
-    EditarEspecialistaComponent
+    EditarEspecialistaComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

@@ -21,17 +21,17 @@ export class EditarEspecialistaComponent implements OnInit {
     click.onchange = (event) => {
         //Previsualizar la imagen en el div campoImagen
         var campoImagen = document.getElementById("campoImagen");
-        campoImagen.src = URL.createObjectURL(event.target.files[0]);
+        //campoImagen.src = URL.createObjectURL(event.target.files[0]);
         //Crear version base 64 de la img
         var fileReader = new FileReader();
         fileReader.addEventListener("load", (e) => {
            
-           document.getElementById("resultadoImagen").innerHTML = e.target.result;
-           this.fotoNueva=e.target.result;
+           //document.getElementById("resultadoImagen").innerHTML = e.target.result;
+           //this.fotoNueva=e.target.result;
            
         })
         
-        fileReader.readAsDataURL(event.target.files[0]);
+        //fileReader.readAsDataURL(event.target.files[0]);
     };
   }
   editarEspecialista(){

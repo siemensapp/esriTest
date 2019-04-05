@@ -31,19 +31,17 @@ div {
 
 #creacion{
   padding-top: 8px;
-  margin: 0;
   height: 8%;
-  width: 87%;
+  width: 90%;
   background-color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  /*border-bottom: 1px black ridge;*/
-  
+  justify-content: space-between;
+  align-items: center;  
 }
 
 #home{
+  margin-left: 2%;
   align-items: center;
   cursor: pointer;
   font-size: 30px;
@@ -99,3 +97,112 @@ a .btnNavbar:hover {
   overflow-y: scroll; 
   overflow-x: hidden;
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #009999;
+  border-radius: 20px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: red;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen{
+  .box{
+    width: 220%;
+    height: 80%;
+    margin-left: 10%;
+  }
+  .popup{
+    height: 80%;
+    width: 220%;
+    margin-left: 10%;
+  }
+}
+
+#tablas{
+  display: flex;
+  width: 100%;
+}
+
+#titulo{
+  text-align: center;
+  font-size: 24px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.tablaEspecialistas{
+    background-color: rgb(211, 211, 211);
+    border: 2px inset lightgray;
+    border-radius: 8px;
+    width: 50%;
+    height: 15%;
+
+}
+
+
+#tituloTablaE{
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#tituloTablaA{
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+.tablaAsignaciones{
+    margin-left: 1%;
+    background-color: rgb(211, 211, 211);
+    border: 2px inset lightgray;
+    border-radius: 8px;
+    width: 180%;
+    height: 15%;
+}
+
+

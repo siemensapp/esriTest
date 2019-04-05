@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+
   // Set our map properties
   mapCenter = [-74.183888, 4.777068];
   basemapType = 'topo';

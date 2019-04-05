@@ -27,6 +27,7 @@
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.4.0",
     "sweetalert2": "^8.7.0",
+    "tiny-date-picker": "^3.2.8",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },

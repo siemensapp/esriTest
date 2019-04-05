@@ -4,11 +4,13 @@ import { WorkersComponent } from './workers/workers.component';
 import { AsignacionComponent } from './asignacion/asignacion.component';
 import { EspecialistaComponent } from './especialista/especialista.component';
 import { EditarEspecialistaComponent } from './editar-especialista/editar-especialista.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   { path: 'formularioAsignacion', component:  AsignacionComponent},
   { path: 'formularioEspecialista', component:    EspecialistaComponent},
   { path: 'formularioEdicionEspecialista', component: EditarEspecialistaComponent},
+  { path: 'verPerfil', component: PerfilComponent},
   { path: '', component: WorkersComponent}
 ];
 

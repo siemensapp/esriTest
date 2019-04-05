@@ -4,7 +4,6 @@ import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import { DataRetrieverService} from '../data-retriever.service';
 import { Router } from '@angular/router';
-import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-workers',
@@ -77,10 +76,28 @@ export class WorkersComponent implements OnInit {
     });
   }
 
+  verCambioFecha(){
+    let fechaCambio=new Date().toISOString().split("T")[0];
+    document.getElementById('pickDate').addEventListener("change", (event) => {
+      fechaCambio=event.target.value;
+      console.log(fechaCambio);
+      this.httpService.get(env.url + '/api/workersList/'+fechaCambio).subscribe(
+        data => {
+          this.Resultados = data as JSON[];
+        }
+      )
+  });
+  }
+
   constructor(private httpService: HttpClient, private dataRetriever: DataRetrieverService, private router: Router) { }
   Resultados : JSON[];
   ngOnInit() {
-    this.httpService.get(env.url + '/api/workersList').subscribe(
+     var today = new Date().toISOString();
+     var fechaHoy = today.split("T")[0];     
+     document.getElementById('pickDate').setAttribute("value", fechaHoy);
+     console.log(fechaHoy);
+     this.verCambioFecha();
+     this.httpService.get(env.url + '/api/workersList/'+fechaHoy).subscribe(
       data => {
         this.Resultados = data as JSON[];
       }

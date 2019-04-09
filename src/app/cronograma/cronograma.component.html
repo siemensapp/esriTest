@@ -69,12 +69,12 @@
     <h1 id="titulo">Cronograma Asignaciones</h1>
     <div id="fechaEleccion">Seleccionar Mes <input type="month" id="fecha"></div>
     <div id="tablas">
-      <table class="tablaEspecialistas">
+      <table class="tablaEspecialistas" id="tablaEspecialistas1">
         <tr id="tituloTablaE">
           <th>Especialista</th>
         </tr>
         <tr *ngFor="let especialista of resultados">
-          <td style="border-top: 1px ridge gray;">{{especialista.NombreE}}</td>
+          <td style="border-top: 1px ridge gray;" class="{{especialista.IdEspecialista}}">{{especialista.NombreE}}</td>
         </tr>
       </table>
       <table class="tablaAsignaciones" id="tablaAsignacionesID">

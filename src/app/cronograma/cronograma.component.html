@@ -1,0 +1,92 @@
+<div id="titulo">Codigo de Colores</div>
+<hr>
+
+<div class="estado" style="border-color: #FF7115">
+  <div class="servicio"> En Servicio
+    <div class="polig" style="background-color: #FF7115">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #008DFF">
+  <div class="servicio"> Compensatorio
+    <div class="polig" style="background-color: #008DFF">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #FFE300">
+  <div class="servicio"> Vacaciones
+    <div class="polig" style="background-color: #FFE300">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #06AA00">
+  <div class="servicio"> Disponible
+    <div class="polig" style="background-color: #06AA00">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #BB0000">
+  <div class="servicio"> Incapacidad
+    <div class="polig" style="background-color: #BB0000">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #5B00BB">
+  <div class="servicio"> Permiso
+    <div class="polig" style="background-color: #5B00BB">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #8B8B8B">
+  <div class="servicio"> Capacitacion
+    <div class="polig" style="background-color: #8B8B8B">
+
+    </div>
+  </div>
+</div>
+<div class="estado" style="border-color: #A04B00">
+  <div class="servicio"> Disponibilidad FDS
+    <div class="polig" style="background-color: #A04B00">
+
+    </div>
+  </div>
+</div>
+<hr>
+<a href="/cronograma#popup1"><input type="button" id="volver" value="Volver Al Cronograma"/></a>
+
+
+
+
+
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h1 id="titulo">Cronograma Asignaciones</h1>
+    <div id="fechaEleccion">Seleccionar Mes <input type="month" id="fecha"></div>
+    <div id="tablas">
+      <table class="tablaEspecialistas">
+        <tr id="tituloTablaE">
+          <th>Especialista</th>
+        </tr>
+        <tr *ngFor="let especialista of resultados">
+          <td style="border-top: 1px ridge gray;">{{especialista.NombreE}}</td>
+        </tr>
+      </table>
+      <table class="tablaAsignaciones" id="tablaAsignacionesID">
+        <!-- <tr>
+          <td></td>
+          <td></td>
+        </tr> -->
+      </table>
+    </div>
+    <a class="close" href="#">&times;</a>
+    <a class="info" href="/cronograma"><i class="fas fa-info"></i></a>
+    <div class="content">
+    </div>
+  </div>
+</div>

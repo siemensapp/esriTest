@@ -5,9 +5,11 @@ import { AsignacionComponent } from './asignacion/asignacion.component';
 import { EspecialistaComponent } from './especialista/especialista.component';
 import { EditarEspecialistaComponent } from './editar-especialista/editar-especialista.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { CronogramaComponent } from './cronograma/cronograma.component';
 
 const routes: Routes = [
   { path: 'formularioAsignacion', component:  AsignacionComponent},
+  { path: 'cronograma', component: CronogramaComponent},
   { path: 'formularioEspecialista', component:    EspecialistaComponent},
   { path: 'formularioEdicionEspecialista', component: EditarEspecialistaComponent},
   { path: 'verPerfil', component: PerfilComponent},

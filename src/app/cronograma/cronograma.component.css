@@ -1,0 +1,243 @@
+#tablaField{
+    padding: 0;
+    margin: 0;
+    height: 90%;
+    width: 100%;
+    float: left;
+    background-color: white;
+    overflow-y: scroll; 
+    overflow-x: hidden;
+  }
+  
+  #fechaEleccion{
+      text-align: center;
+      margin-left: 40%;
+      margin-bottom: 1%;
+      font-size: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+  }
+  
+  
+  #fecha{
+    width: 40%;
+    height: 20px;
+    margin-bottom: 1%;    
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+  }
+  
+  #fecha:hover{
+    border: 2px inset #009999;
+    border-radius: 10px;
+  }
+  
+  #fecha::-webkit-clear-button{
+    display:none;
+  }
+  
+  #fecha::-webkit-inner-spin-button{
+    display:none;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #009999;
+    border-radius: 20px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    /* transition: all 200ms; */
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: red;
+  }
+  
+  .popup .info{
+    position: absolute;
+    top: 25px;
+    right: 70px;
+    /* transition: all 200ms; */
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .popup .info:hover {
+    color: lightgray;
+    cursor: pointer;
+  }
+  
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  
+  @media screen{
+    .box{
+      width: 90%;
+      height: 60%;
+      margin-left: 10%;
+    }
+    .popup{
+      height: 80%;
+      width: 84%;
+      margin-left: 6%;
+    }
+    .contenedorInfo{
+      height: 50%;
+      width: 40%;
+    }
+  }
+  
+  
+  .contenedorInfo .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .contenedorInfo .close:hover {
+    color: red;
+  }
+  
+  .contenido{
+     width: 100%;
+  }
+  
+  .contenedorInfo{
+    margin: 70px auto;
+    padding: 20px;
+    background: lightgray;
+    border-radius: 5px;
+    width: 50%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  #tablas{
+    display: flex;
+    width: 100%;
+  }
+  
+  #titulo{
+    text-align: center;
+    font-size: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  
+  .tablaEspecialistas{
+      background-color: rgb(211, 211, 211);
+      border: 2px inset lightgray;
+      border-radius: 8px;
+      width: 50%;
+      height: 15%;
+  
+  }
+  
+  #tituloTablaE{
+      font-weight: bold;
+      text-align: center;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+  }
+  
+  #tablaAsignacionesID{
+      font-weight: bold;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+  }
+  
+  .tablaAsignaciones{
+      margin-left: 1%;
+      background-color: rgb(211, 211, 211);
+      border: 2px inset lightgray;
+      border-radius: 8px;
+      width: 180%;
+      height: 15%;
+  }
+  
+  .servicio{
+    display:flex;
+    font-size:22px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+  }
+  
+  .polig{
+    margin-left: 2%;
+    height: 20px;
+    width: 30px;
+    margin-top: 2px;
+  }
+  
+  .estado{
+    margin-bottom: 2%;
+    margin-left: 1%;
+    margin-right: 2%;
+    border: 5px ridge white;
+    border-radius: 15px;
+  }
+
+  #volver{
+    margin-top: 4%;
+    margin-left: 25%;
+    width: 50%;
+    height: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: black; 
+    background-color: white;
+    border: ridge 1.4px #0F1923;
+    cursor: pointer;
+}
+
+#volver:hover{
+    color: white;
+    background-color: #0F1923;
+    border: ridge 1.1px #0F1923; 
+}
+  

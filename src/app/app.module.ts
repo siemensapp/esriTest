@@ -9,6 +9,7 @@ import { EspecialistaComponent } from './especialista/especialista.component';
 import { WorkersComponent } from './workers/workers.component';
 import { EditarEspecialistaComponent } from './editar-especialista/editar-especialista.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { CronogramaComponent } from './cronograma/cronograma.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     EspecialistaComponent,
     WorkersComponent,
     EditarEspecialistaComponent,
-    PerfilComponent
+    PerfilComponent,
+    CronogramaComponent
   ],
   imports: [
     BrowserModule,

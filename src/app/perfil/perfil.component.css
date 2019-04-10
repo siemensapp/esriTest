@@ -70,6 +70,11 @@
     text-align: center;
 }
 
+.divisor{
+    border-top: 4px ridge #0F1923;
+    opacity: 0.6;
+}
+
 #volver{
     margin-top: 5%;
     margin-left: 35%;

@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="tablaRight">
-        <a routerLink='/verPerfil'><button class="perfil"><i class="fas fa-user"></i></button></a>
+        <a routerLink='/verPerfil'><button class="perfil" (click)="getInfoEspecialista(resultado)"><i class="fas fa-user"></i></button></a>
         <a routerLink='/formularioEdicionEspecialista'><button class="editar"
             (click)="getInfoEspecialista(resultado)"><i class="fas fa-edit"></i></button></a>
         <button class="eliminar" (click)="borrar(resultado.IdEspecialista, resultado.NombreE)"><i

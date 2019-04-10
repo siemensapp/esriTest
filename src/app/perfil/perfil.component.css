@@ -1,0 +1,82 @@
+#animacion {
+    animation-name: deslizar;
+    animation-duration: 0.4s;
+}
+    
+@keyframes deslizar {
+    from {width: 30%}
+    to {width: 100%}
+}
+
+#Nombre{
+    font-size: 22px;
+    font-weight: 600;  
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 2%;
+}
+
+#campoFoto{
+    height: 220px;
+    width: 30%;
+    border: ridge 1.1px #0F1923;
+    align-content: center;
+    margin-left: 35%;
+    margin-bottom: 2%;
+}
+
+#campoImagen{
+    width: 100%;
+    height: auto;
+}
+
+.IdNombreTecnicah{
+    justify-content: space-evenly;
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.IdNombreTecnicav{
+    margin-left: 14%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.FechaCecoGidh{
+    justify-content: space-evenly;
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.FechaCecoGidv{
+    margin-left: 14%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.CelularLugarTarjetah{
+    justify-content: space-evenly;
+    display: flex;
+    margin-bottom: 2%;
+}
+
+.CelularLugarTarjetav{
+    margin-left: 14%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.headers{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+.campos{
+    height: 30px;
+    width: 80%;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 4%;
+}

@@ -73,8 +73,8 @@
         <tr id="tituloTablaE">
           <th>Especialista</th>
         </tr>
-        <tr *ngFor="let especialista of resultados">
-          <td style="border-top: 1px ridge gray;" class="{{especialista.IdEspecialista}}">{{especialista.NombreE}}</td>
+        <tr *ngFor="let especialista of resultados" id={{especialista.IdEspecialista}}>
+          <td style="border-top: 1px ridge lightgray; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 15px;">{{especialista.NombreE}}</td>
         </tr>
       </table>
       <table class="tablaAsignaciones" id="tablaAsignacionesID">

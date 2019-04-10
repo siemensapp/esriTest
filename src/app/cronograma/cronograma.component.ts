@@ -34,6 +34,27 @@ export class CronogramaComponent implements OnInit {
     })
   }
 
+  setColor(option:number){
+    switch(option) {
+      case 1:
+        return '#FF7115';
+      case 2:
+        return '#008DFF';
+      case 3:
+        return '#FFE300';
+      case 4:
+        return '#06AA00';
+      case 5:
+        return '#BB0000';
+      case 6:
+        return '#5B00BB';
+      case 7:
+        return '#8B8B8B';
+      case 8:
+        return '#A04B00';
+    } 
+  }
+
   ngOnInit() {
 
      //Obtener las asignaciones del mes y año de la fecha de HOY 
@@ -66,7 +87,6 @@ export class CronogramaComponent implements OnInit {
       this.resultados = especialistas;
       this.traerAsignaciones(fechaHoyMA+"-"+"01").then(data =>{
       this.Asignaciones = data;
-      console.log(this.Asignaciones);
       for(var i=0; i<this.resultados.length;i++){
         tableA = document.getElementById("tablaAsignacionesID");
         fila = tableA.insertRow(i+1);
@@ -76,28 +96,27 @@ export class CronogramaComponent implements OnInit {
           celda.style.height = "19.6px";
         }
       }
-      var x = tableA.rows[2].cells;
+       var x;
       for(var i=0; i<this.Asignaciones.length;i++){
-          if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])){          
-            for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
-              x[j].style.backgroundColor = "green";
-              x[j].style.opacity = "0.7";
-            }
-          }
-          else{
-            if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1])){
-              for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
-                x[j].style.backgroundColor = "green";
-                x[j].style.opacity = "0.7";
-              }
-            }
-            else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1])){
-              for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMes;j++){
-                x[j].style.backgroundColor = "green";
-                x[j].style.opacity = "0.7";
-              }
-            }
-          }
+        var ids = document.getElementById(this.Asignaciones[i]['IdEspecialista']).rowIndex;
+        x = tableA.rows[ids].cells;
+           if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])){          
+             for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
+                x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+             }
+           }
+           else{
+             if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1])){
+               for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
+                 x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+               }
+             }
+             else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1])){
+               for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMes;j++){
+                 x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+               }
+             }
+           }
         
       }
     });

@@ -164,12 +164,11 @@
   
   
   .tablaEspecialistas{
-      background-color: rgb(211, 211, 211);
+      background-color: whitesmoke;
       border: 2px inset lightgray;
       border-radius: 8px;
       width: 50%;
       height: 15%;
-  
   }
   
   #tituloTablaE{
@@ -188,7 +187,7 @@
   
   .tablaAsignaciones{
       margin-left: 1%;
-      background-color: rgb(211, 211, 211);
+      background-color: whitesmoke;
       border: 2px inset lightgray;
       border-radius: 8px;
       width: 180%;

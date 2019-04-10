@@ -1,6 +1,6 @@
 #animacion {
     animation-name: deslizar;
-    animation-duration: 0.4s;
+    animation-duration: 0.6s;
 }
     
 @keyframes deslizar {
@@ -21,6 +21,7 @@
     height: 220px;
     width: 30%;
     border: ridge 1.1px #0F1923;
+    border-radius: 10px;
     align-content: center;
     margin-left: 35%;
     margin-bottom: 2%;
@@ -28,41 +29,27 @@
 
 #campoImagen{
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
-.IdNombreTecnicah{
+.IdCelularCedulaLugarh{
     justify-content: space-evenly;
     display: flex;
     margin-bottom: 2%;
 }
 
-.IdNombreTecnicav{
-    margin-left: 14%;
+.IdCelularCedulaLugarv{
     display: flex;
     justify-content: space-around;
 }
 
-.FechaCecoGidh{
+.FechaCecoGidTarjetah{
     justify-content: space-evenly;
     display: flex;
     margin-bottom: 2%;
 }
 
-.FechaCecoGidv{
-    margin-left: 14%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.CelularLugarTarjetah{
-    justify-content: space-evenly;
-    display: flex;
-    margin-bottom: 2%;
-}
-
-.CelularLugarTarjetav{
-    margin-left: 14%;
+.FechaCecoGidTarjetav{
     display: flex;
     justify-content: space-around;
 }
@@ -70,13 +57,34 @@
 .headers{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
+    text-align: center;
 }
 
 .campos{
-    height: 30px;
-    width: 80%;
+    
+    width: 100%;
     font-size: 14px;
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 4%;
+    text-align: center;
+}
+
+#volver{
+    margin-top: 5%;
+    margin-left: 35%;
+    width: 30%;
+    height: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: black; 
+    background-color: white;
+    border: ridge 1.4px #0F1923;
+    cursor: pointer;
+}
+
+#volver:hover{
+    color: white;
+    background-color: #0F1923;
+    border: ridge 1.1px #0F1923; 
 }

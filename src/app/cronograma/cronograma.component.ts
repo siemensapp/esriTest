@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import * as env from '../../assets/variables';
+import Swal from 'sweetalert2'; 
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -32,6 +33,41 @@ export class CronogramaComponent implements OnInit {
         resolve(data);
       })
     })
+  }
+
+  menuAsignacion(){
+    var tabla = document.getElementById("tablaAsignacionesID");
+    if (tabla != null) {
+        for (var i = 0; i < tabla.rows.length; i++) {
+            for (var j = 0; j < tabla.rows[i].cells.length; j++)
+                tabla.rows[i].cells[j].onclick = function () { getCelda(this); };
+        }
+    }
+    function getCelda(celda) {
+        var fila= celda.parentNode.rowIndex;
+        var columna = (celda.cellIndex)+1;
+        if(celda.style.backgroundColor !== ""){
+        Swal.fire({
+            title: "Asignacion",
+            showCloseButton: true,
+            showCancelButton: true,
+            confirmButtonColor: "blue",
+            cancelButtonColor: "red",
+            confirmButtonText: "VER MAS INFORMACION",
+            cancelButtonText: "ELIMINAR",
+          }).then((result) => {
+              if(result.value){
+                    console.log('Ver mas info');
+              }
+              else{
+                console.log('borrar');
+              }
+          });
+        }
+        else{
+            console.log("No existe la asignacion");
+        }
+    }
   }
 
   setColor(option:number){

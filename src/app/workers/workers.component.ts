@@ -92,6 +92,7 @@ export class WorkersComponent implements OnInit {
   constructor(private httpService: HttpClient, private dataRetriever: DataRetrieverService, private router: Router) { }
   Resultados : JSON[];
   ngOnInit() {
+    console.log(this);
      var today = new Date().toISOString();
      var fechaHoy = today.split("T")[0];     
      document.getElementById('pickDate').setAttribute("value", fechaHoy);

@@ -26,6 +26,10 @@ export class DataRetrieverService {
     })
   }
 
+  borrarAssignment(){
+
+  }
+
   obtenerUbicacion(coordenadas: string){
     this.infoSource.next(coordenadas);
     let aux = this.infoSource.value.split(",");

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import * as env from '../../assets/variables';
@@ -45,7 +46,9 @@ export class CronogramaComponent implements OnInit {
     }
     function getCelda(celda) {
         var fila= celda.parentNode.rowIndex;
-        var columna = (celda.cellIndex)+1;
+        var columna = celda.cellIndex+1;
+        console.log(celda.hasAttribute('style'));
+        console.log(fila, columna+1);
         if(celda.style.backgroundColor !== ""){
         Swal.fire({
             title: "Asignacion",
@@ -57,15 +60,17 @@ export class CronogramaComponent implements OnInit {
             cancelButtonText: "ELIMINAR",
           }).then((result) => {
               if(result.value){
-                    console.log('Ver mas info');
+                  var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
+                  var fecha = document.getElementById('fecha').value+"-"+columna;
+                  console.log(IdEspecialista, fecha);
               }
               else{
-                console.log('borrar');
+                
               }
           });
         }
         else{
-            console.log("No existe la asignacion");
+            console.log("No existe ninguna asignacion en esta fecha");
         }
     }
   }

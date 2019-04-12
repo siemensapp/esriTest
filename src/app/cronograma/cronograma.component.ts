@@ -34,6 +34,7 @@ export class CronogramaComponent implements OnInit {
     return new Promise(resolve => {
       this.httpService.get(env.url + '/api/getAssignments/'+fecha).map( result => result).subscribe(data =>{
         resolve(data);
+        console.log(data);
       })
     })
   }
@@ -56,12 +57,13 @@ export class CronogramaComponent implements OnInit {
               var url = env.url + '/api/getInfoAssignment/'+IdEspecialista+'/'+fecha;
               this.dataRetriever.getData(url).then(data => {
                 this.infoAsignacion = data as JSON;
+                var contenido = this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
+                + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
+                + this.infoAsignacion[0]['FechaInicio'].split("T")[0] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'].split("T")[0] + '\n'
+                + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto'];
                 Swal.fire(
                   'Informacion Asignacion',
-                    this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
-                     + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
-                     + this.infoAsignacion[0]['FechaInicio'].split("T")[0] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'].split("T")[0] + '\n'
-                     + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto']
+                  contenido
                 ) 
                 }) 
           }
@@ -86,12 +88,14 @@ export class CronogramaComponent implements OnInit {
                   if(respuesta == "true"){
                     Swal.fire(
                       'Asignacion Borrada',
+                      '',
                       'success'
                     ).then(()=> location.reload())
                   }
                   else{
                     Swal.fire(
                       'Error al borrar asignacion',
+                      'No se pudo completar la accion',
                       'error'
                     )
                   }

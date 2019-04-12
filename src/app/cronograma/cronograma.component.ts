@@ -68,11 +68,36 @@ export class CronogramaComponent implements OnInit {
           else{
               var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
               var fecha = document.getElementById('fecha').value+"-"+columna;
-              var url = env.url + '/api/deleteAssignment/'+IdEspecialista+'/'+fecha;
-              this.dataRetriever.getData(url).then(data => {
-                this.infoAsignacion = data as JSON;
-                console.log(this.infoAsignacion);
-              })
+              Swal.fire({
+                type: "warning",
+                title: "Seguro desea borrar esta asignacion?",
+                text: "Esta operacion es irreversible",
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonColor: "red",
+                confirmButtonText: "BORRAR",
+                cancelButtonColor: "gray",
+                cancelButtonText: "CANCELAR"
+              }).then((result1) => {
+                if(result1.value){
+                var url = env.url + '/api/deleteAssignment/'+IdEspecialista+'/'+fecha;
+                this.dataRetriever.borrarAssignment(url).then(respuesta => {
+                  console.log(respuesta);
+                  if(respuesta == "true"){
+                    Swal.fire(
+                      'Asignacion Borrada',
+                      'success'
+                    ).then(()=> location.reload())
+                  }
+                  else{
+                    Swal.fire(
+                      'Error al borrar asignacion',
+                      'error'
+                    )
+                  }
+                })
+              }
+              });
           }
       });
     }

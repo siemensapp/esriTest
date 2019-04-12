@@ -26,8 +26,14 @@ export class DataRetrieverService {
     })
   }
 
-  borrarAssignment(){
-
+  borrarAssignment(url:string){
+    return new Promise(resolve => {
+      this.http.get(url)
+        .map(results => results)
+        .subscribe(data => {
+          resolve(data);
+        })
+    })
   }
 
   obtenerUbicacion(coordenadas: string){

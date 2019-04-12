@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import 'rxjs/add/operator/map';
+import { DataRetrieverService } from '../data-retriever.service';
 
 @Component({
   selector: 'app-cronograma',
@@ -12,10 +13,11 @@ import 'rxjs/add/operator/map';
 })
 export class CronogramaComponent implements OnInit {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient, private dataRetriever: DataRetrieverService) { }
   Asignaciones: JSON[];
   resultados: JSON[];
   datos: JSON[];
+  infoAsignacion: {};
   daysInMonth (month, year) {
     return new Date(year, month, 0).getDate();
   }
@@ -36,44 +38,50 @@ export class CronogramaComponent implements OnInit {
     })
   }
 
-  menuAsignacion(){
-    var tabla = document.getElementById("tablaAsignacionesID");
-    if (tabla != null) {
-        for (var i = 0; i < tabla.rows.length; i++) {
-            for (var j = 0; j < tabla.rows[i].cells.length; j++)
-                tabla.rows[i].cells[j].onclick = function () { getCelda(this); };
-        }
+  menuAsignacion(columna, fila, estiloCelda) {
+    
+    if(estiloCelda.style.backgroundColor !== ""){
+    Swal.fire({
+        title: "Asignacion",
+        showCloseButton: true,
+        showCancelButton: true,
+        confirmButtonColor: "blue",
+        cancelButtonColor: "red",
+        confirmButtonText: "VER MAS INFORMACION",
+        cancelButtonText: "ELIMINAR",
+      }).then((result) => {
+          if(result.value){
+              var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
+              var fecha = document.getElementById('fecha').value+"-"+columna;
+              var url = env.url + '/api/getInfoAssignment/'+IdEspecialista+'/'+fecha;
+              this.dataRetriever.getData(url).then(data => {
+                this.infoAsignacion = data as JSON;
+                console.log(this.infoAsignacion);
+                })
+              Swal.fire(
+                'Informacion Asignacion',
+                  this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
+                   + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
+                   + this.infoAsignacion[0]['FechaInicio'] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'] + '\n'
+                   + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto'],
+                  'success'
+              )  
+          }
+          else{
+              var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
+              var fecha = document.getElementById('fecha').value+"-"+columna;
+              var url = env.url + '/api/deleteAssignment/'+IdEspecialista+'/'+fecha;
+              this.dataRetriever.getData(url).then(data => {
+                this.infoAsignacion = data as JSON;
+                console.log(this.infoAsignacion);
+              })
+          }
+      });
     }
-    function getCelda(celda) {
-        var fila= celda.parentNode.rowIndex;
-        var columna = celda.cellIndex+1;
-        console.log(celda.hasAttribute('style'));
-        console.log(fila, columna+1);
-        if(celda.style.backgroundColor !== ""){
-        Swal.fire({
-            title: "Asignacion",
-            showCloseButton: true,
-            showCancelButton: true,
-            confirmButtonColor: "blue",
-            cancelButtonColor: "red",
-            confirmButtonText: "VER MAS INFORMACION",
-            cancelButtonText: "ELIMINAR",
-          }).then((result) => {
-              if(result.value){
-                  var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
-                  var fecha = document.getElementById('fecha').value+"-"+columna;
-                  console.log(IdEspecialista, fecha);
-              }
-              else{
-                
-              }
-          });
-        }
-        else{
-            console.log("No existe ninguna asignacion en esta fecha");
-        }
+    else{
+        console.log("No existe ninguna asignacion en esta fecha");
     }
-  }
+}
 
   setColor(option:number){
     switch(option) {
@@ -103,6 +111,12 @@ export class CronogramaComponent implements OnInit {
      var fechaHoyMA=fechaHoy.split("-")[0] + "-" + fechaHoy.split("-")[1];
      var diasDelMes= new Date(parseInt(fechaHoy.split("-")[0]), parseInt(fechaHoy.split("-")[1]), 0).getDate();
      var tabla=document.getElementById("tablaAsignacionesID");
+     tabla.addEventListener("click", (event) => {
+        var columna = event.target.attributes[0].ownerElement.cellIndex+1;
+        var fila = event.target.attributes[0].ownerElement.parentNode.rowIndex;
+        var estiloCelda = event.target.attributes[0].ownerElement; 
+        this.menuAsignacion(columna, fila, estiloCelda);
+     });
      var header = tabla.createTHead();
      var row = header.insertRow(0);
      for(var i=0; i<diasDelMes;i++){

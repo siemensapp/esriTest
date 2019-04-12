@@ -60,7 +60,7 @@ export class CronogramaComponent implements OnInit {
                   'Informacion Asignacion',
                     this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
                      + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
-                     + this.infoAsignacion[0]['FechaInicio'] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'] + '\n'
+                     + this.infoAsignacion[0]['FechaInicio'].split("T")[0] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'].split("T")[0] + '\n'
                      + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto']
                 ) 
                 }) 

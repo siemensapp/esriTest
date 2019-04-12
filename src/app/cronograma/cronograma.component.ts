@@ -56,16 +56,14 @@ export class CronogramaComponent implements OnInit {
               var url = env.url + '/api/getInfoAssignment/'+IdEspecialista+'/'+fecha;
               this.dataRetriever.getData(url).then(data => {
                 this.infoAsignacion = data as JSON;
-                console.log(this.infoAsignacion);
-                })
-              Swal.fire(
-                'Informacion Asignacion',
-                  this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
-                   + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
-                   + this.infoAsignacion[0]['FechaInicio'] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'] + '\n'
-                   + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto'],
-                  'success'
-              )  
+                Swal.fire(
+                  'Informacion Asignacion',
+                    this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
+                     + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
+                     + this.infoAsignacion[0]['FechaInicio'] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'] + '\n'
+                     + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto']
+                ) 
+                }) 
           }
           else{
               var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;

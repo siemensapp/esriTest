@@ -5,6 +5,7 @@ import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import 'rxjs/add/operator/map';
 import { DataRetrieverService } from '../data-retriever.service';
+import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-cronograma',
@@ -57,9 +58,9 @@ export class CronogramaComponent implements OnInit {
               var url = env.url + '/api/getInfoAssignment/'+IdEspecialista+'/'+fecha;
               this.dataRetriever.getData(url).then(data => {
                 this.infoAsignacion = data as JSON;
-                var contenido = this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') '+ this.infoAsignacion[0]['NombreS']
-                + '\n' + this.infoAsignacion[0]['NombreSitio'] + '\n'
-                + this.infoAsignacion[0]['FechaInicio'].split("T")[0] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'].split("T")[0] + '\n'
+                var contenido = this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') - '+ this.infoAsignacion[0]['NombreS'] + '<br>'
+                + this.infoAsignacion[0]['NombreSitio'] + '<br><br>'
+                + this.infoAsignacion[0]['FechaInicio'].split("T")[0] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'].split("T")[0] + '<br><br>'
                 + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto'];
                 Swal.fire(
                   'Informacion Asignacion',
@@ -137,6 +138,7 @@ export class CronogramaComponent implements OnInit {
      var fechaHoy=new Date().toISOString();
      var fechaHoyMA=fechaHoy.split("-")[0] + "-" + fechaHoy.split("-")[1];
      var diasDelMes= new Date(parseInt(fechaHoy.split("-")[0]), parseInt(fechaHoy.split("-")[1]), 0).getDate();
+     this.dataRetriever.obtenerFecha(String(fechaHoyMA+"-"+"01"));
      var tabla=document.getElementById("tablaAsignacionesID");
      tabla.addEventListener("click", (event) => {
         var columna = event.target.attributes[0].ownerElement.cellIndex+1;
@@ -209,6 +211,7 @@ export class CronogramaComponent implements OnInit {
       document.getElementById('fecha').addEventListener("change", (event) => {
         var fecha=event.target.value;
         var diasDelMesN= new Date(fecha.split("-")[0], fecha.split("-")[1], 0).getDate(); 
+        this.dataRetriever.obtenerFecha(fecha+"-"+"01");
          var tabla=document.getElementById("tablaAsignacionesID");
          tabla.deleteRow(0);
          var header = tabla.createTHead();

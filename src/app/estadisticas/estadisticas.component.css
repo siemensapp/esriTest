@@ -1,0 +1,35 @@
+#titulo{
+    font-size: 26px;
+    font-weight: 600;  
+    align-content: center;
+    margin-left: 23%;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.alineacion{
+    display: flex;
+    margin-top: 8%;
+}
+
+
+
+#cronograma{
+    margin-top: 8%;
+    margin-left: 25%;
+    width: 50%;
+    height: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+    color: black; 
+    background-color: white;
+    border: ridge 1.4px #0F1923;
+    cursor: pointer;
+}
+
+#cronograma:hover{
+    color: white;
+    background-color: #0F1923;
+    border: ridge 1.1px #0F1923; 
+}
+

@@ -9,8 +9,10 @@ import 'rxjs/add/operator/map';
 })
 export class DataRetrieverService {
   private infoSource= new BehaviorSubject("");
+  private fechaSource = new BehaviorSubject("");
   private coordsSource= new BehaviorSubject([]);
   private especialistaSource = new BehaviorSubject({});
+  infoFecha = this.fechaSource.asObservable();
   finalCoords = this.coordsSource.asObservable();
   infoUbicacion = this.infoSource.asObservable();
   infoEspecialista = this.especialistaSource.asObservable();
@@ -34,6 +36,11 @@ export class DataRetrieverService {
           resolve(data);
         })
     })
+  }
+
+  obtenerFecha(fecha: string){
+    this.fechaSource.next(fecha);
+    console.log(this.fechaSource.value);
   }
 
   obtenerUbicacion(coordenadas: string){

@@ -34,31 +34,32 @@
 }
 
 .IdCelularCedulaLugarh{
-    justify-content: space-evenly;
+    justify-content: space-around;
     display: flex;
     margin-bottom: 2%;
+    margin-left: 0%;
 }
 
 .IdCelularCedulaLugarv{
     display: flex;
-    justify-content: space-around;
 }
 
 .FechaCecoGidTarjetah{
-    justify-content: space-evenly;
+    justify-content: space-around;
     display: flex;
     margin-bottom: 2%;
+    margin-left: 0%;
 }
 
 .FechaCecoGidTarjetav{
     display: flex;
-    justify-content: space-around;
 }
 
 .headers{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
     text-align: center;
+    /* margin-left: 13%; */
 }
 
 .campos{

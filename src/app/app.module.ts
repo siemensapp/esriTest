@@ -10,6 +10,10 @@ import { WorkersComponent } from './workers/workers.component';
 import { EditarEspecialistaComponent } from './editar-especialista/editar-especialista.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { CronogramaComponent } from './cronograma/cronograma.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
+
 
 
 @NgModule({
@@ -21,10 +25,14 @@ import { CronogramaComponent } from './cronograma/cronograma.component';
     WorkersComponent,
     EditarEspecialistaComponent,
     PerfilComponent,
-    CronogramaComponent
+    CronogramaComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,
+    NgCircleProgressModule.forRoot({
+    }),
+
     HttpClientModule,
     AppRoutingModule
   ],

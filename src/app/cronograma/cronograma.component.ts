@@ -74,7 +74,8 @@ export class CronogramaComponent implements OnInit {
               Swal.fire({
                 type: "warning",
                 title: "Seguro desea borrar esta asignacion?",
-                text: "Esta operacion es irreversible",
+                html: '<input id="input1" placeholder="Sujeto/Entidad Cancelando el Servicio" style="height: 30px; width:60%; margin-top:5%;"><br>' +
+                '<input id="input2" placeholder="Razón Cancelación" style="height: 30px; width:60%; margin-top:5%;">',
                 showCloseButton: true,
                 showCancelButton: true,
                 confirmButtonColor: "red",

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as env from '../../assets/variables';
 import {HttpClient} from '@angular/common/http';
 import { DataRetrieverService } from '../data-retriever.service';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Component({
   selector: 'app-estadisticas',
@@ -12,7 +11,7 @@ import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 export class EstadisticasComponent implements OnInit {
 
   asignaciones: JSON[];
-  fechaA= "";
+  fechaA = "";
   totalDiasVFD=0;
   totalDiasBT=0;
   totalDiasAUT=0;
@@ -144,8 +143,7 @@ export class EstadisticasComponent implements OnInit {
     if(isNaN(this.porcentajeMOT))
       this.porcentajeMOT = 0;
     this.porcentajeTotal = (this.porcentajeVFD + this.porcentajeBT + this.porcentajeAUT + this.porcentajeAOS + this.porcentajeMOT)/5;
-    console.log(this.porcentajeTotal);
-  }
+    }
 
   ngOnInit() {
       this.DataRetriever.infoFecha.subscribe(infoFecha => {

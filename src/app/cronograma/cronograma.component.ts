@@ -132,151 +132,155 @@ export class CronogramaComponent implements OnInit {
     } 
   }
 
-  ngOnInit() {
+  setFecha(fechaN: string){
+    this.dataRetriever.obtenerFecha(fechaN);
+  }
 
-     //Obtener las asignaciones del mes y año de la fecha de HOY 
-     var fechaHoy=new Date().toISOString();
-     var fechaHoyMA=fechaHoy.split("-")[0] + "-" + fechaHoy.split("-")[1];
-     var diasDelMes= new Date(parseInt(fechaHoy.split("-")[0]), parseInt(fechaHoy.split("-")[1]), 0).getDate();
-     this.dataRetriever.obtenerFecha(String(fechaHoyMA+"-"+"01"));
-     var tabla=document.getElementById("tablaAsignacionesID");
-     tabla.addEventListener("click", (event) => {
-        var columna = event.target.attributes[0].ownerElement.cellIndex+1;
-        var fila = event.target.attributes[0].ownerElement.parentNode.rowIndex;
-        var estiloCelda = event.target.attributes[0].ownerElement; 
-        this.menuAsignacion(columna, fila, estiloCelda);
-     });
-     var header = tabla.createTHead();
-     var row = header.insertRow(0);
-     for(var i=0; i<diasDelMes;i++){
-       if(i<9){
-         var cell = row.insertCell(i);
-         cell.innerHTML = "<b>"+"0"+(i+1)+"</b>";
-       }
-       else{
-         var cell = row.insertCell(i);
-         cell.innerHTML = "<b>"+(i+1)+"</b>";
+  ngOnInit() {
+    //Obtener las asignaciones del mes y año de la fecha de HOY 
+    var fechaHoy=new Date().toISOString();
+    var fechaHoyMA=fechaHoy.split("-")[0] + "-" + fechaHoy.split("-")[1];
+    var diasDelMes= new Date(parseInt(fechaHoy.split("-")[0]), parseInt(fechaHoy.split("-")[1]), 0).getDate();
+    this.setFecha(fechaHoyMA+"-"+"01");
+    var tabla=document.getElementById("tablaAsignacionesID");
+    tabla.addEventListener("click", (event) => {
+       var columna = event.target.attributes[0].ownerElement.cellIndex+1;
+       var fila = event.target.attributes[0].ownerElement.parentNode.rowIndex;
+       var estiloCelda = event.target.attributes[0].ownerElement; 
+       this.menuAsignacion(columna, fila, estiloCelda);
+    });
+    var header = tabla.createTHead();
+    var row = header.insertRow(0);
+    for(var i=0; i<diasDelMes;i++){
+      if(i<9){
+        var cell = row.insertCell(i);
+        cell.innerHTML = "<b>"+"0"+(i+1)+"</b>";
+      }
+      else{
+        var cell = row.insertCell(i);
+        cell.innerHTML = "<b>"+(i+1)+"</b>";
+      }
+    }
+     document.getElementById('fecha').setAttribute('value', fechaHoyMA);
+
+    //Llenar la primera tabla con los nombres de todos los Field Service
+    //rows[i].rowIndex(Indice de la fila) e textContent(Nombre del especialista). className(IdEspecialista)
+   var tableA;
+   var fila;
+   var celda;
+   
+
+   this.traerNumeroEspecialistas().then(especialistas => {
+     this.resultados = especialistas;
+     this.traerAsignaciones(fechaHoyMA+"-"+"01").then(data =>{
+     this.Asignaciones = data;
+     for(var i=0; i<this.resultados.length;i++){
+       tableA = document.getElementById("tablaAsignacionesID");
+       fila = tableA.insertRow(i+1);
+       
+       for(var j=0; j<diasDelMes;j++){
+         celda = fila.insertCell(j);
+         celda.style.height = "19.6px";
        }
      }
-      document.getElementById('fecha').setAttribute('value', fechaHoyMA);
-
-     //Llenar la primera tabla con los nombres de todos los Field Service
-     //rows[i].rowIndex(Indice de la fila) e textContent(Nombre del especialista). className(IdEspecialista)
-    var tableA;
-    var fila;
-    var celda;
-    
-
-    this.traerNumeroEspecialistas().then(especialistas => {
-      this.resultados = especialistas;
-      this.traerAsignaciones(fechaHoyMA+"-"+"01").then(data =>{
-      this.Asignaciones = data;
-      for(var i=0; i<this.resultados.length;i++){
-        tableA = document.getElementById("tablaAsignacionesID");
-        fila = tableA.insertRow(i+1);
-        
-        for(var j=0; j<diasDelMes;j++){
-          celda = fila.insertCell(j);
-          celda.style.height = "19.6px";
-        }
-      }
-       var x;
-      for(var i=0; i<this.Asignaciones.length;i++){
-        var ids = document.getElementById(this.Asignaciones[i]['IdEspecialista']).rowIndex;
-        x = tableA.rows[ids].cells;
-           if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])){          
-             for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
-                x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
-             }
-           }
-           else{
-             if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1])){
-               for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
-                 x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
-               }
-             }
-             else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1])){
-               for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMes;j++){
-                 x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
-               }
-             }
-           }
-        
-      }
-    });
-    });
- 
- 
-     //Crear un EventListener en el Seleccionador de fecha. Siempre que cambia, cambia la tabla
-      document.getElementById('fecha').addEventListener("change", (event) => {
-        var fecha=event.target.value;
-        var diasDelMesN= new Date(fecha.split("-")[0], fecha.split("-")[1], 0).getDate(); 
-        this.dataRetriever.obtenerFecha(fecha+"-"+"01");
-         var tabla=document.getElementById("tablaAsignacionesID");
-         tabla.deleteRow(0);
-         var header = tabla.createTHead();
-         var row = header.insertRow(0);
-         for(var i=0; i<diasDelMesN;i++){
-           if(i<9){
-             var cell = row.insertCell(i);
-             cell.innerHTML = "<b>"+"0"+(i+1)+"</b>";
-           }
-           else{
-             var cell = row.insertCell(i);
-             cell.innerHTML = "<b>"+(i+1)+"</b>";
-           }
-         }
-
-         var tableA;
-         var fila;
-         var celda;
-
-          this.traerNumeroEspecialistas().then(especialistas => {
-             this.resultados = especialistas;
-             this.traerAsignaciones(fecha+"-"+"01").then(data =>{
-                this.Asignaciones = data;
-                tableA = document.getElementById("tablaAsignacionesID");
-                for(var i=this.resultados.length; i>1;i--){
-                fila = tableA.deleteRow(i);
-                }
-                tableA.deleteRow(1);
-                for(var i=0; i<this.resultados.length;i++){
-                tableA = document.getElementById("tablaAsignacionesID");
-                fila = tableA.insertRow(i+1);
-                
-                for(var j=0; j<diasDelMesN;j++){
-                    celda = fila.insertCell(j);
-                    celda.style.height = "19.6px";
-                }
-                }
-             var x;
-            for(var i=0; i<this.Asignaciones.length;i++){
-              var ids = document.getElementById(this.Asignaciones[i]['IdEspecialista']).rowIndex;
-              x = tableA.rows[ids].cells;
-                 if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])){          
-                   for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
-                      x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
-                   }
-                 }
-                 else{
-                   if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fecha.split("-")[1])){
-                     for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
-                       x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
-                     }
-                   }
-                   else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fecha.split("-")[1])){
-                     for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMesN;j++){
-                       x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
-                     }
-                   }
-                 }
-              
+      var x;
+     for(var i=0; i<this.Asignaciones.length;i++){
+       var ids = document.getElementById(this.Asignaciones[i]['IdEspecialista']).rowIndex;
+       x = tableA.rows[ids].cells;
+          if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])){          
+            for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
+               x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
             }
-           });
-           });
+          }
+          else{
+            if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1])){
+              for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
+                x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+              }
+            }
+            else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1])){
+              for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMes;j++){
+                x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+              }
+            }
+          }
+       
+     }
+   });
+   });
 
 
-    });
+    //Crear un EventListener en el Seleccionador de fecha. Siempre que cambia, cambia la tabla
+     document.getElementById('fecha').addEventListener("change", (event) => {
+       var fecha=event.target.value;
+       var diasDelMesN= new Date(fecha.split("-")[0], fecha.split("-")[1], 0).getDate(); 
+       this.setFecha(fecha+"-"+"01");
+        var tabla=document.getElementById("tablaAsignacionesID");
+        tabla.deleteRow(0);
+        var header = tabla.createTHead();
+        var row = header.insertRow(0);
+        for(var i=0; i<diasDelMesN;i++){
+          if(i<9){
+            var cell = row.insertCell(i);
+            cell.innerHTML = "<b>"+"0"+(i+1)+"</b>";
+          }
+          else{
+            var cell = row.insertCell(i);
+            cell.innerHTML = "<b>"+(i+1)+"</b>";
+          }
+        }
+
+        var tableA;
+        var fila;
+        var celda;
+
+         this.traerNumeroEspecialistas().then(especialistas => {
+            this.resultados = especialistas;
+            this.traerAsignaciones(fecha+"-"+"01").then(data =>{
+               this.Asignaciones = data;
+               tableA = document.getElementById("tablaAsignacionesID");
+               for(var i=this.resultados.length; i>1;i--){
+               fila = tableA.deleteRow(i);
+               }
+               tableA.deleteRow(1);
+               for(var i=0; i<this.resultados.length;i++){
+               tableA = document.getElementById("tablaAsignacionesID");
+               fila = tableA.insertRow(i+1);
+               
+               for(var j=0; j<diasDelMesN;j++){
+                   celda = fila.insertCell(j);
+                   celda.style.height = "19.6px";
+               }
+               }
+            var x;
+           for(var i=0; i<this.Asignaciones.length;i++){
+             var ids = document.getElementById(this.Asignaciones[i]['IdEspecialista']).rowIndex;
+             x = tableA.rows[ids].cells;
+                if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])){          
+                  for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
+                     x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+                  }
+                }
+                else{
+                  if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fecha.split("-")[1])){
+                    for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
+                      x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+                    }
+                  }
+                  else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fecha.split("-")[1])){
+                    for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMesN;j++){
+                      x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+                    }
+                  }
+                }
+             
+           }
+          });
+          });
+
+
+   });
+     
   }
 
 }

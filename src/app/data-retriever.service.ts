@@ -12,11 +12,17 @@ export class DataRetrieverService {
   private fechaSource = new BehaviorSubject("");
   private coordsSource= new BehaviorSubject([]);
   private especialistaSource = new BehaviorSubject({});
-  infoFecha = this.fechaSource.asObservable();
   finalCoords = this.coordsSource.asObservable();
+  infoFecha = this.fechaSource.asObservable();
   infoUbicacion = this.infoSource.asObservable();
   infoEspecialista = this.especialistaSource.asObservable();
   constructor( private http: HttpClient){ }
+
+  
+  obtenerFecha(fecha: string){
+    this.fechaSource.next(fecha);
+    console.log(this.fechaSource.value);
+  }
 
   getData( url: string ) {
     return new Promise(resolve => {
@@ -36,11 +42,6 @@ export class DataRetrieverService {
           resolve(data);
         })
     })
-  }
-
-  obtenerFecha(fecha: string){
-    this.fechaSource.next(fecha);
-    console.log(this.fechaSource.value);
   }
 
   obtenerUbicacion(coordenadas: string){

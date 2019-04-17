@@ -5,7 +5,6 @@ import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import 'rxjs/add/operator/map';
 import { DataRetrieverService } from '../data-retriever.service';
-import { ConsoleReporter } from 'jasmine';
 
 @Component({
   selector: 'app-cronograma',
@@ -19,6 +18,7 @@ export class CronogramaComponent implements OnInit {
   resultados: JSON[];
   datos: JSON[];
   infoAsignacion: {};
+  infoAsignacion2: {};
   daysInMonth (month, year) {
     return new Date(year, month, 0).getDate();
   }
@@ -71,11 +71,16 @@ export class CronogramaComponent implements OnInit {
           else{
               var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
               var fecha = document.getElementById('fecha').value+"-"+columna;
+              this.dataRetriever.getData(env.url+'/api/getInfoAssignment/'+IdEspecialista+'/'+fecha).then(data =>{
+                  this.infoAsignacion2 = data as JSON;
+                  console.log(this.infoAsignacion2);
+              });
               Swal.fire({
                 type: "warning",
                 title: "Seguro desea borrar esta asignacion?",
-                html: '<input id="input1" placeholder="Sujeto/Entidad Cancelando el Servicio" style="height: 30px; width:60%; margin-top:5%;"><br>' +
-                '<input id="input2" placeholder="Razón Cancelación" style="height: 30px; width:60%; margin-top:5%;">',
+                html: '<p style="font-family: Verdana, Geneva, Tahoma, sans-serif;">LLenar los siguientes campos</p>'+
+                '<input id="input1" maxlength="60" placeholder="Sujeto/Entidad Cancelando el Servicio" style="height: 35px; width:80%; margin-top:5%;font-family: Verdana, Geneva, Tahoma, sans-serif; font-size:16px;"><br>' +
+                '<textarea id="input2" maxlength="255" placeholder="Razón Cancelación del Servicio" autocomplete="off" style="height: 60px; width:80%; margin-top:5%;font-family: Verdana, Geneva, Tahoma, sans-serif;"></textarea>',
                 showCloseButton: true,
                 showCancelButton: true,
                 confirmButtonColor: "red",
@@ -84,10 +89,27 @@ export class CronogramaComponent implements OnInit {
                 cancelButtonText: "CANCELAR"
               }).then((result1) => {
                 if(result1.value){
-                var url = env.url + '/api/deleteAssignment/'+IdEspecialista+'/'+fecha;
-                this.dataRetriever.borrarAssignment(url).then(respuesta => {
-                  console.log(respuesta);
-                  if(respuesta == "true"){
+                  var datos = {
+                            'IdEspecialista': this.infoAsignacion2[0]['IdEspecialista'],
+                             'IdStatus' : this.infoAsignacion2[0]['IdStatus'],
+                             'IdAsignacion' : this.infoAsignacion2[0]['IdAsignacion'],
+                             'FechaInicio' : this.infoAsignacion2[0]['FechaInicio'].split("T")[0],
+                             'FechaFin' : this.infoAsignacion2[0]['FechaFin'].split("T")[0],
+                             'CoordenadasSitio' : this.infoAsignacion2[0]['CoordenadasSitio'],
+                             'CoordenadasEspecialista' : this.infoAsignacion2[0]['CoordenadasEspecialista'],
+                             'NombreSitio' : this.infoAsignacion2[0]['NombreSitio'],
+                             'NombreContacto' : this.infoAsignacion2[0]['NombreContacto'],
+                             'TelefonoContacto' : this.infoAsignacion2[0]['TelefonoContacto'],
+                             'Descripcion' : this.infoAsignacion2[0]['Descripcion'],
+                             'SujetoCancelacion' : document.getElementById('input1').value,
+                             'RazonCancelacion' : document.getElementById('input2').value,
+                             'fecha' : fecha
+                            };
+                var url = env.url + '/api/deleteAssignment';
+                this.httpService.post(url, datos).toPromise()
+                .then((res) => {
+                  console.log(res);
+                  if(res == "true"){
                     Swal.fire(
                       'Asignacion Borrada',
                       '',

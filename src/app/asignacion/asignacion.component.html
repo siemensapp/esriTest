@@ -41,11 +41,11 @@ Seleccionar Especialista
 <input type="text" name="nombreContacto" id="nContacto" autocomplete="off">
 </div>
 <div id="cel"> Telefono Contacto
-<input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off">
+<input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off" maxlength="10">
 </div>
 </div>
 <div id="descripcion"> Descripcion Trabajo
-<textarea name="descripcionAsignacion" id="desc" autocomplete="off"></textarea>
+<textarea maxlength="255" name="descripcionAsignacion" id="desc" autocomplete="off"></textarea>
 </div>
 <div id="labelSitio"><label>Sitio </label><span id="ubicacion">{{finalCoords[1]}}</span></div>
 </form>

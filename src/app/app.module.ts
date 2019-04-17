@@ -12,6 +12,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { CronogramaComponent } from './cronograma/cronograma.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { AsignacionesEliminadasComponent } from './asignaciones-eliminadas/asignaciones-eliminadas.component';
 
 
 
@@ -26,7 +27,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     EditarEspecialistaComponent,
     PerfilComponent,
     CronogramaComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    AsignacionesEliminadasComponent
   ],
   imports: [
     BrowserModule,

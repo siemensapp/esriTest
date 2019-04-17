@@ -1,0 +1,68 @@
+#animacion {
+  animation-name: deslizar;
+  animation-duration: 0.4s;
+}
+
+@keyframes deslizar {
+  from {
+    width: 30%
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+#tituloAE{
+    font-size: 22px;
+    font-weight: 600;  
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+#headersTablaA {
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#tablaAsignacionesEliminadas {
+  margin-left: 1%;
+  background-color: whitesmoke;
+  border: 2px inset lightgray;
+  border-radius: 8px;
+  width: 98%;
+}
+
+.borde{
+  border-bottom: 1px ridge gray;
+}
+
+.filas{
+  height: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+}
+
+#volver {
+  margin-top: 4%;
+  margin-left: 25%;
+  width: 50%;
+  height: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  border: ridge 1.4px #0F1923;
+  cursor: pointer;
+}
+
+#volver:hover {
+  color: white;
+  background-color: #0F1923;
+  border: ridge 1.1px #0F1923;
+}

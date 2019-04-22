@@ -21,15 +21,16 @@ export class AsignacionesEliminadasComponent implements OnInit {
       if(isUndefined(fecha)){
         fecha = '';
       }
+      console.log(fecha, texto);
       this.dataRetriever.getData(env.url+'/api/getDeletedAssignments/'+fecha+'/'+texto).then(data => {
         this.resultados = data as JSON[];
         console.log(this.resultados);
-        })
+        })  
 
     });
 
-    document.getElementById('buscar').addEventListener("change", (event) => {
-      var fecha = document.getElementById('fecha').attributes[2].ownerDocument.activeElement.value;
+    document.getElementById('buscar').addEventListener("input", (event) => {
+      var fecha = document.getElementById('fecha').attributes[2].ownerElement.value;
       var texto = document.getElementById('buscar').attributes[2].ownerElement.value;
       if(isUndefined(fecha)){
         fecha = '';
@@ -48,7 +49,7 @@ export class AsignacionesEliminadasComponent implements OnInit {
       })
   }
   ngOnInit() {
-    console.log(document.getElementById(''));
+       console.log(document.getElementById('fecha').attributes);
        this.traerAsignacionesEliminadas();
        this.agregarListener();
   }

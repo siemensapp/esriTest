@@ -1,30 +1,27 @@
 <div id="animacion">
-<div id="tituloAE">ASIGNACIONES ELIMINADAS</div>
-<hr>
-<div id="filtros">
-  <div id="tFiltros">Filtros</div>
-  <input type="date" id="fecha"/>
-  <input type="text" id="buscar" autocomplete="off" placeholder="Buscar por Texto..."/>
-</div>
-<hr>
-  <table id="tablaAsignacionesEliminadas">
-    <tr id="headersTablaA">
-      <th class="borde">Fecha Inicio</th>
-      <th class="borde">Fecha Final </th>
-      <th class="borde">Lugar Servicio</th>
-      <th class="borde">Sujeto Cancelacion</th>
-      <th class="borde">Razon Cancelacion</th>
-    </tr>
-    <tr *ngFor="let especialista of resultados">
+  <div id="tituloAE">ASIGNACIONES ELIMINADAS</div>
+  <hr>
+  <div id="filtros">
+    <div id="tFiltros">Filtros</div>
+    <input placeholder="Buscar por Fecha..." class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="fecha"/>
+    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar por Texto...  "/>
+  </div>
+  <hr>
+  <div id="scrollTabla">
+    <table id="tablaAsignacionesEliminadas">
+      <tr id="headersTablaA">
+        <th class="borde">Fecha Inicio</th>
+        <th class="borde">Fecha Final </th>
+        <th class="borde">Lugar Servicio</th>
+        <th class="borde">Sujeto Cancelacion</th>
+        <th class="borde">Razon Cancelacion</th>
+      </tr>
+
+      <tr *ngFor="let especialista of resultados">
       <td class="filas"></td>
     </tr>
-    <tr>
-        <td class="filas">2019-05-10</td>
-        <td class="filas">2019-05-10</td>
-        <td class="filas">La Cabala</td>
-        <td class="filas">Andres Felipe Rojas Suarez</td>
-        <td class="filas">No se necesita mas mantenimiento</td>
-    </tr>
-  </table>
+
+    </table>
+  </div>
   <a href="/cronograma#popup1"><input type="button" id="volver" value="Volver Al Cronograma" /></a>
 </div>

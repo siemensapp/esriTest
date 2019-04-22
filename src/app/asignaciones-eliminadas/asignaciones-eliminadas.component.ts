@@ -32,11 +32,11 @@ export class AsignacionesEliminadasComponent implements OnInit {
 
     });
 
-    document.getElementById('buscar').addEventListener("input", (event) => {
+    document.getElementById('buscar').addEventListener("change", (event) => {
     
       var fecha = document.getElementById('fecha').attributes[2].ownerElement.value;
       var texto = document.getElementById('buscar').attributes[2].ownerElement.value;
-      if(isUndefined(fecha)){
+      if(fecha == ''){
         fecha = "'null'";
       }
       if(texto == ''){

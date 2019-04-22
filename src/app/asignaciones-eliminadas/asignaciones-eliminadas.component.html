@@ -3,8 +3,9 @@
   <hr>
   <div id="filtros">
     <div id="tFiltros">Filtros</div>
-    <input placeholder="Buscar por Fecha..." class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="fecha"/>
-    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar por Texto...  "/>
+    <input placeholder="Buscar por Fecha..." class="textbox-n" type="text" onfocus="(this.type='date')"
+      onblur="(this.type='text')" id="fecha" />
+    <input type="text" id="buscar" autocomplete="off" placeholder="Buscar por Texto...  " />
   </div>
   <hr>
   <div id="scrollTabla">
@@ -17,9 +18,13 @@
         <th class="borde">Razon Cancelacion</th>
       </tr>
 
-      <tr *ngFor="let especialista of resultados">
-      <td class="filas"></td>
-    </tr>
+      <tr *ngFor="let asignacion of resultados">
+        <td class="filas">{{asignacion.FechaInicio.split("T")[0]}}</td>
+        <td class="filas">{{asignacion.FechaFin.split("T")[0]}}</td>
+        <td class="filas">{{asignacion.NombreSitio}}</td>
+        <td class="filas">{{asignacion.RazonCancelacion}}</td>
+        <td class="filas">{{asignacion.SujetoCancelacion}}</td>
+      </tr>
 
     </table>
   </div>

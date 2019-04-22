@@ -64,6 +64,19 @@ to {width: 100%}
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.estiloFechas:hover{
+    border: 2px inset whitesmoke;
+    border-radius: 10px;
+}
+
+.estiloFechas::-webkit-clear-button{
+    display:none;
+}
+
+.estiloFechas::-webkit-inner-spin-button{
+    display:none;
+}
+
 #infoContacto{
     margin-top: 10%;
     margin-left: 10%;
@@ -71,6 +84,7 @@ to {width: 100%}
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 77.5%;
 }
 
 #name{
@@ -115,7 +129,8 @@ to {width: 100%}
     margin-top: 5%;
     margin-left: 5%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14px;    
+    font-size: 14px;
+    text-align: center; 
 }
 
 #ubicacion{

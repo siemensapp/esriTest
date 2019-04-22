@@ -19,7 +19,10 @@ export class AsignacionesEliminadasComponent implements OnInit {
       var fecha = document.getElementById('fecha').attributes[2].ownerDocument.activeElement.value;
       var texto = document.getElementById('buscar').attributes[2].ownerElement.value;
       if(isUndefined(fecha)){
-        fecha = '';
+        fecha = "'null'";
+      }
+      if(texto == ''){
+        texto = "'null'";
       }
       console.log(fecha, texto);
       this.dataRetriever.getData(env.url+'/api/getDeletedAssignments/'+fecha+'/'+texto).then(data => {
@@ -30,10 +33,14 @@ export class AsignacionesEliminadasComponent implements OnInit {
     });
 
     document.getElementById('buscar').addEventListener("input", (event) => {
+    
       var fecha = document.getElementById('fecha').attributes[2].ownerElement.value;
       var texto = document.getElementById('buscar').attributes[2].ownerElement.value;
       if(isUndefined(fecha)){
-        fecha = '';
+        fecha = "'null'";
+      }
+      if(texto == ''){
+        texto = "'null'";
       }
       this.dataRetriever.getData(env.url+'/api/getDeletedAssignments/'+fecha+'/'+texto).then(data => {
         this.resultados = data as JSON[];
@@ -43,13 +50,12 @@ export class AsignacionesEliminadasComponent implements OnInit {
 
   }
   traerAsignacionesEliminadas(){
-    this.dataRetriever.getData(env.url+"/api/getDeletedAssignments/''/''").then(data => {
+    this.dataRetriever.getData(env.url+"/api/getDeletedAssignments/'null'/'null'").then(data => {
       this.resultados = data as JSON[];
       console.log(this.resultados);
       })
   }
   ngOnInit() {
-       console.log(document.getElementById('fecha').attributes);
        this.traerAsignacionesEliminadas();
        this.agregarListener();
   }

@@ -4,6 +4,7 @@ import {DataRetrieverService} from '../data-retriever.service';
 import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import { Router } from '@angular/router';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-asignacion',
@@ -45,12 +46,19 @@ export class AsignacionComponent implements OnInit {
                     )
                     this.router.navigate(['']);
                 }
+                else if(res == "existe"){
+                  Swal.fire(
+                    'Error Creando Asignacion',
+                    'Otra asignacion para este especialista ya existe en esas fechas. Verifique el cronograma',
+                    'error'
+                  )  
+                }
                 else{
                   Swal.fire(
                     'Error Creando Asignacion',
-                    'Es posible que una asignacion para este especialista ya exista en esas fechas',
+                    'Hubo un error creando la asignacion',
                     'error'
-                  )  
+                  ) 
                 }
                  });
   }
@@ -58,7 +66,16 @@ export class AsignacionComponent implements OnInit {
   ResultadosField : JSON[];
   ngOnInit() {
     this.DataRetriever.infoUbicacion.subscribe(infoUbicacion => this.infoUbicacion = infoUbicacion);
-    this.DataRetriever.finalCoords.subscribe(finalCoords => this.finalCoords = finalCoords);
+    this.DataRetriever.finalCoords.subscribe(finalCoords => {this.finalCoords = finalCoords
+      var nombreS = document.getElementById('ubicacion').textContent;
+      if(nombreS == ''){
+        console.log(nombreS);
+        document.getElementById('ubicacion').textContent = '*Seleccionar Ubicacion en el Mapa*';
+      }
+      else
+      document.getElementById('ubicacion').textContent = this.finalCoords[1];
+
+    });
     // var fechaHoy=new Date();
     // document.getElementById("fechaI").setAttribute("value", String(fechaHoy.getFullYear()+"-0"+(fechaHoy.getMonth()+1)+"-"+fechaHoy.getDate()));
       this.DataRetriever.getData(env.url+'/api/allWorkers').then(data => {

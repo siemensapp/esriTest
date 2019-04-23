@@ -86,12 +86,12 @@
 
 #tablaAsignacionesEliminadas {
   margin-top: 3%;
-  margin-left: 1%;
+  margin-left: 0.5%;
   height: 30px;
   background-color: whitesmoke;
   border: 2px inset lightgray;
   border-radius: 8px;
-  width: 98%;
+  width: 99%;
 }
 
 .borde {

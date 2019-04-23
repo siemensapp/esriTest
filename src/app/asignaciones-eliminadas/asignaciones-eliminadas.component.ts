@@ -27,7 +27,6 @@ export class AsignacionesEliminadasComponent implements OnInit {
       console.log(fecha, texto);
       this.dataRetriever.getData(env.url+'/api/getDeletedAssignments/'+fecha+'/'+texto).then(data => {
         this.resultados = data as JSON[];
-        console.log(this.resultados);
         })  
 
     });
@@ -44,7 +43,6 @@ export class AsignacionesEliminadasComponent implements OnInit {
       }
       this.dataRetriever.getData(env.url+'/api/getDeletedAssignments/'+fecha+'/'+texto).then(data => {
         this.resultados = data as JSON[];
-        console.log(this.resultados);
         })
     });
 
@@ -52,7 +50,6 @@ export class AsignacionesEliminadasComponent implements OnInit {
   traerAsignacionesEliminadas(){
     this.dataRetriever.getData(env.url+"/api/getDeletedAssignments/'null'/'null'").then(data => {
       this.resultados = data as JSON[];
-      console.log(this.resultados);
       })
   }
   ngOnInit() {

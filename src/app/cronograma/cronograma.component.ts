@@ -5,6 +5,8 @@ import * as env from '../../assets/variables';
 import Swal from 'sweetalert2'; 
 import 'rxjs/add/operator/map';
 import { DataRetrieverService } from '../data-retriever.service';
+import * as jsPDF from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-cronograma',
@@ -58,15 +60,40 @@ export class CronogramaComponent implements OnInit {
               var url = env.url + '/api/getInfoAssignment/'+IdEspecialista+'/'+fecha;
               this.dataRetriever.getData(url).then(data => {
                 this.infoAsignacion = data as JSON;
+                var id = this.infoAsignacion[0]['IdAsignacion'];
+                var url2 = env.url + '/api/getReportByAssignment/'+id;
+                this.dataRetriever.getData(url2).then(reportData => {
                 var contenido = this.infoAsignacion[0]['NombreE'] + ' (' + this.infoAsignacion[0]['NombreT']+') - '+ this.infoAsignacion[0]['NombreS'] + '<br>'
                 + this.infoAsignacion[0]['NombreSitio'] + '<br><br>'
                 + this.infoAsignacion[0]['FechaInicio'].split("T")[0] + '  ==>  ' + this.infoAsignacion[0]['FechaFin'].split("T")[0] + '<br><br>'
                 + 'Contacto: ' + this.infoAsignacion[0]['NombreContacto'] + ' - ' + this.infoAsignacion[0]['TelefonoContacto'];
-                Swal.fire(
-                  'Informacion Asignacion',
-                  contenido
-                ) 
+                if(reportData == 'false'){
+                Swal.fire({
+                  title: 'Informacion Asignacion',
+                  html: contenido,
+                  confirmButtonText: "SALIR",
+                  confirmButtonColor: "gray",
                 }) 
+                }
+                else{
+                  Swal.fire({
+                    title:'Informacion Asignacion',
+                    html:contenido,
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "MIRAR REPORTE",
+                    cancelButtonText: "SALIR"
+                  }).then((result => {
+                    if(result.value){
+                      this.crearPDF();
+                    }
+                  })) 
+                }
+                
+                })
+              })
+                
+                
           }
           else{
               var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
@@ -133,6 +160,16 @@ export class CronogramaComponent implements OnInit {
         console.log("No existe ninguna asignacion en esta fecha");
     }
 }
+
+  crearPDF(){
+    var doc = new jsPDF();
+    // html2canvas().then(function(canvas) {
+    //   var imgData = canvas.toDataURL('image/png');
+    //   doc.addImage(imgData, 'PNG', 10, 10);
+    //   doc.save('sample.pdf');
+    // });
+  }
+
 
   setColor(option:number){
     switch(option) {

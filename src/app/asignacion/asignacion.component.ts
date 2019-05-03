@@ -15,6 +15,7 @@ export class AsignacionComponent implements OnInit {
 
     finalCoords = [];
     infoUbicacion = "";
+    infoCiudad = "";
   enviarDatos(){
     var datos1 = document.forms["formulario"].elements[0].value;
     var datos2 = document.forms["formulario"].elements[1].value;
@@ -23,16 +24,23 @@ export class AsignacionComponent implements OnInit {
     var datos5 = document.forms["formulario"].elements[4].value;
     var datos6 = document.forms["formulario"].elements[5].value;
     var datos7 = document.forms["formulario"].elements[6].value;
+    var datos8 = document.forms["formulario"].elements[7].value;
+    var datos9 = document.forms["formulario"].elements[8].value;
+    var datos10 = document.forms["formulario"].elements[9].value;
 
-    var datos = {"IdEspecialista" : datos1,
-                 "IdStatus" : datos2,
-                 "FechaInicio" : datos3,
-                 "FechaFin" : datos4,
+    var datos = {"IdEspecialista" : datos3,
+                 "IdStatus" : datos4,
+                 "NombreCliente" : datos1,
+                 "NombrePlanta" : datos2, 
+                 "CiudadPlanta" : this.finalCoords[2],
+                 "FechaInicio" : datos5,
+                 "FechaFin" : datos6,
                  "CoordenadasSitio" : this.finalCoords[0],
                  "NombreSitio" : this.infoUbicacion.split(",")[2],
-                 "NombreContacto" : datos5,
-                 "TelefonoContacto" : datos6,
-                 "Descripcion" : datos7
+                 "NombreContacto" : datos7,
+                 "TelefonoContacto" : datos8,
+                 "EmailContacto" : datos9,
+                 "Descripcion" : datos10
                 };
     console.log(datos);
     this.httpService.post(env.url+'/api/setAssignment', datos).toPromise()
@@ -70,11 +78,10 @@ export class AsignacionComponent implements OnInit {
       var nombreS = document.getElementById('ubicacion').textContent;
       if(nombreS == ''){
         console.log(nombreS);
-        document.getElementById('ubicacion').textContent = '*Seleccionar Ubicacion en el Mapa*';
+        document.getElementById('ubicacion').textContent = '*Buscar Ubicacion en el Mapa*';
       }
       else
-      document.getElementById('ubicacion').textContent = this.finalCoords[1];
-
+      document.getElementById('ubicacion').textContent = this.finalCoords[1] + ', '+ this.finalCoords[2];
     });
     // var fechaHoy=new Date();
     // document.getElementById("fechaI").setAttribute("value", String(fechaHoy.getFullYear()+"-0"+(fechaHoy.getMonth()+1)+"-"+fechaHoy.getDate()));

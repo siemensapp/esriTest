@@ -1,56 +1,68 @@
 <div id="animacion">
-<div id="titulo">
-  <p>CREAR ASIGNACION</p>
-  <br>
-</div>
-<form id="formulario">
-<div class="headerCombo">
-Seleccionar Especialista
-</div>
-<div class="espacioCombo">
-<select class="combo">
-  <option *ngFor = "let resultado of ResultadosField" value={{resultado.IdEspecialista}}>{{resultado.NombreE}}</option>
-</select>
-</div>
-<div class="headerCombo">
-  Seleccionar Status
-</div>
-<div class="espacioCombo">
-  <select class="combo">
-    <option value=1>En Servicio</option>
-    <option value=2>Compensatorio</option>
-    <option value=3>Vacaciones</option>
-    <option value=4>Disponible</option>
-    <option value=5>Incapacidad</option>
-    <option value=6>Permiso</option>
-    <option value=7>Capacitacion</option>
-    <option value=8>Disponibilidad FDS</option>
-</select>
-</div>
-<div id="headerFechas">Fechas de la Asignacion</div>
-<div id="fechas">
-<div>
-<input class="estiloFechas" type="date" name="fechaInicio" id="fechaI">
-</div>
-<div>
-<input class="estiloFechas" type="date" name="fechaFin" id="fechaF">
-</div>
-</div>
-<div id="infoContacto">
-<div id="name"> Nombre Contacto
-<input type="text" name="nombreContacto" id="nContacto" autocomplete="off">
-</div>
-<div id="cel"> Telefono Contacto
-<input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off" maxlength="10">
-</div>
-</div>
-<div id="descripcion"> Descripcion Trabajo
-<textarea maxlength="255" name="descripcionAsignacion" id="desc" autocomplete="off"></textarea>
-</div>
-<div id="labelSitio"><label>Nombre Sitio: </label><span id="ubicacion"></span></div>
-</form>
-<div id="botones">
-<button (click)="enviarDatos()" id="enviar">Agregar Asignacion</button><br>
-<button routerLink='' id="cancelar">Cancelar</button><br>
-</div>
+  <div id="titulo">
+    <p>CREAR ASIGNACION</p>
+    <br>
+  </div>
+  <form id="formulario">
+    <div id="infoCliente">
+    <div class="headerCliente">Cliente
+        <input type="text" name="nombreCliente" id="nCliente" autocomplete="off">
+    </div>
+    <div class="headerPlanta">Planta
+        <input type="text" name="nombrePlanta" id="nPlanta" autocomplete="off">
+    </div>
+  </div>
+    <div class="headerCombo">
+      Seleccionar Especialista
+    </div>
+    <div class="espacioCombo">
+      <select class="combo">
+        <option *ngFor="let resultado of ResultadosField" value={{resultado.IdEspecialista}}>{{resultado.NombreE}}
+        </option>
+      </select>
+    </div>
+    <div class="headerCombo">
+      Seleccionar Status
+    </div>
+    <div class="espacioCombo">
+      <select class="combo">
+        <option value=1>En Servicio</option>
+        <option value=2>Compensatorio</option>
+        <option value=3>Vacaciones</option>
+        <option value=4>Disponible</option>
+        <option value=5>Incapacidad</option>
+        <option value=6>Permiso</option>
+        <option value=7>Capacitacion</option>
+        <option value=8>Disponibilidad FDS</option>
+      </select>
+    </div>
+    <!-- <div id="headerFechas">Fechas de la Asignacion</div> -->
+    <div id="fechas">
+      <div>
+        <input class="estiloFechas" type="date" name="fechaInicio" id="fechaI" placeholder="Desde">
+      </div>
+      <div>
+        <input class="estiloFechas" type="date" name="fechaFin" id="fechaF" placeholder="Hasta">
+      </div>
+    </div>
+    <div id="infoContacto">
+      <div id="name"> Nombre Contacto
+        <input type="text" name="nombreContacto" id="nContacto" autocomplete="off">
+      </div>
+      <div id="cel"> Telefono Contacto
+        <input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off" maxlength="10">
+      </div>
+      <div id="email"> Email Contacto
+          <input type="text" name="emailContacto" id="eContacto" autocomplete="off">
+        </div>
+    </div>
+    <div id="descripcion"> Descripcion Trabajo
+      <textarea maxlength="255" name="descripcionAsignacion" id="desc" autocomplete="off"></textarea>
+    </div>
+    <div id="labelSitio"><label>Nombre Sitio: </label><span id="ubicacion"></span></div>
+  </form>
+  <div id="botones">
+    <button (click)="enviarDatos()" id="enviar">Agregar Asignacion</button><br>
+    <button routerLink='' id="cancelar">Cancelar</button><br>
+  </div>
 </div>

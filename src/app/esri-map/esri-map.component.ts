@@ -193,7 +193,7 @@ export class EsriMapComponent implements OnInit {
       // Se crea la vista del mapa
       let view = new EsriMapView(mapViewProperties)
       // Se crea el boton
-      let boton = this.createLocationBtn();
+      let boton = this.createLocationBtn(); 
       // Se agrega a la vista
       let points = await this.prepareWorkers();
       for (let x of points) {
@@ -229,7 +229,7 @@ export class EsriMapComponent implements OnInit {
       
       
       busqueda.on("select-result", (event) => {
-        var coordenadasSitio = String(event.result.feature.geometry.latitude + "," + event.result.feature.geometry.longitude + "," + event.result.name);
+        var coordenadasSitio = String(event.result.feature.geometry.latitude + "," + event.result.feature.geometry.longitude + "," + event.result.name + ","+event.result.feature.attributes.City);
         this.setUbicacion(coordenadasSitio);
       })
 

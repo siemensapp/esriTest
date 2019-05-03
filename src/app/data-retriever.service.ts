@@ -37,7 +37,7 @@ export class DataRetrieverService {
   obtenerUbicacion(coordenadas: string){
     this.infoSource.next(coordenadas);
     let aux = this.infoSource.value.split(",");
-    this.coordsSource.next([ String(aux[1] + "," + aux[0]), aux[2]  ])
+    this.coordsSource.next([ String(aux[1] + "," + aux[0]), aux[2], aux[3]  ]);
     console.log(this.coordsSource.value);
   }
 

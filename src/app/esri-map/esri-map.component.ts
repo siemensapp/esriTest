@@ -91,25 +91,6 @@ export class EsriMapComponent implements OnInit {
 
   constructor(private dataRetriever: DataRetrieverService) {}
 
-  // Funcion que crea el boton
-  createLocationBtn() {
-    let boton = document.createElement("button");
-    boton.style.height = "32px";
-    boton.style.width = "32px";
-    boton.style.backgroundColor = "#fff";
-    boton.style.border = "none";
-    boton.style.color = "#6e6e6e";
-    boton.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
-    boton.style.fontSize = "20px";
-    boton.onmouseover = function () {
-      boton.style.backgroundColor = "lightGrey";
-      boton.style.cursor = 'pointer';
-    }
-    boton.onmouseout = function () {
-      boton.style.backgroundColor = "#fff";
-    }
-    return boton;
-  }
 
   preparePoints(data) {
     let points = [];
@@ -192,11 +173,10 @@ export class EsriMapComponent implements OnInit {
 
       // Se crea la vista del mapa
       let view = new EsriMapView(mapViewProperties)
-      // Se crea el boton
-      let boton = this.createLocationBtn(); 
       // Se agrega a la vista
       let points = await this.prepareWorkers();
       for (let x of points) {
+        if(x.pointMap.longitude !== ""){
         console.log(x);
         view.graphics.add(
           new Graphic({
@@ -218,9 +198,8 @@ export class EsriMapComponent implements OnInit {
             }
           })
         );
-
+        }
       }
-      view.ui.add(boton, "top-left");
 
       var busqueda = new Search({
         view : view

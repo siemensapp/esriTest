@@ -54,8 +54,10 @@ export class CronogramaComponent implements OnInit {
         cancelButtonText: "ELIMINAR",
       }).then((result) => {
           if(result.value){
-              var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
-              var fecha = document.getElementById('fecha').value+"-"+columna;
+              var idEspecialista = <HTMLTableElement> document.getElementById('tablaEspecialistas1');
+              var IdEspecialista = idEspecialista.rows[fila].id;
+              var Fecha = <HTMLInputElement> document.getElementById('fecha');
+              var fecha = Fecha.value+"-"+columna;
               var url = env.url + '/api/getInfoAssignment/'+IdEspecialista+'/'+fecha;
               this.dataRetriever.getData(url).then(data => {
                 this.infoAsignacion = data as JSON;
@@ -95,8 +97,10 @@ export class CronogramaComponent implements OnInit {
                 
           }
           else{
-              var IdEspecialista = document.getElementById('tablaEspecialistas1').rows[fila].id;
-              var fecha = document.getElementById('fecha').value+"-"+columna;
+              var idEspecialista = <HTMLTableElement> document.getElementById('tablaEspecialistas1');
+              var IdEspecialista = idEspecialista.rows[fila].id;
+              var Fecha = <HTMLInputElement> document.getElementById('fecha');
+              var fecha = Fecha.value+"-"+columna;
               this.dataRetriever.getData(env.url+'/api/getInfoAssignment/'+IdEspecialista+'/'+fecha).then(data =>{
                   this.infoAsignacion2 = data as JSON;
                   console.log(this.infoAsignacion2);
@@ -115,6 +119,10 @@ export class CronogramaComponent implements OnInit {
                 cancelButtonText: "CANCELAR"
               }).then((result1) => {
                 if(result1.value){
+                  var sc = <HTMLInputElement> document.getElementById('input1');
+                  var SC = sc.value;
+                  var rc = <HTMLInputElement> document.getElementById('input2');
+                  var RC = rc.value;
                   var datos = {
                             'IdEspecialista': this.infoAsignacion2[0]['IdEspecialista'],
                              'IdStatus' : this.infoAsignacion2[0]['IdStatus'],
@@ -127,8 +135,8 @@ export class CronogramaComponent implements OnInit {
                              'NombreContacto' : this.infoAsignacion2[0]['NombreContacto'],
                              'TelefonoContacto' : this.infoAsignacion2[0]['TelefonoContacto'],
                              'Descripcion' : this.infoAsignacion2[0]['Descripcion'],
-                             'SujetoCancelacion' : document.getElementById('input1').value,
-                             'RazonCancelacion' : document.getElementById('input2').value,
+                             'SujetoCancelacion' : SC,
+                             'RazonCancelacion' : RC,
                              'fecha' : fecha
                             };
                 var url = env.url + '/api/deleteAssignment';
@@ -250,16 +258,23 @@ export class CronogramaComponent implements OnInit {
             }
           }
           else{
-            if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1])){
+            if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1]) && parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1]) == parseInt(fechaHoy.split("-")[1])){
+
               for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
                 x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
               }
             }
-            else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1])){
+            else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1]) && parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt(fechaHoy.split("-")[1])){
               for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMes;j++){
                 x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
               }
             }
+            else if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fechaHoy.split("-")[1]) && parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fechaHoy.split("-")[1])){
+              for(var j=0;j<diasDelMes;j++){
+                x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+              }
+            }
+
           }
        
      }
@@ -319,13 +334,19 @@ export class CronogramaComponent implements OnInit {
                   }
                 }
                 else{
-                  if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fecha.split("-")[1])){
+                  if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fecha.split("-")[1]) && parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1]) == parseInt(fecha.split("-")[1])){
+
                     for(var j=0;j<(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[2]));j++){
                       x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
                     }
                   }
-                  else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fecha.split("-")[1])){
-                    for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMesN;j++){
+                  else if(parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fecha.split("-")[1]) && parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1]) == parseInt(fecha.split("-")[1])){
+                    for(var j=(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[2])-1);j<diasDelMes;j++){
+                      x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
+                    }
+                  }
+                  else if(parseInt((this.Asignaciones[i]['FechaInicio'].split("T")[0]).split("-")[1])<parseInt(fecha.split("-")[1]) && parseInt((this.Asignaciones[i]['FechaFin'].split("T")[0]).split("-")[1])>parseInt(fecha.split("-")[1])){
+                    for(var j=0;j<diasDelMes-1;j++){
                       x[j].style.backgroundColor = this.setColor(this.Asignaciones[i]['IdStatus']);
                     }
                   }

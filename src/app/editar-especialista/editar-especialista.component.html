@@ -10,46 +10,77 @@
     <input type="button" id="subirFoto" value="Subir Imagen" (click)="subirArchivo()" />
   </div>
   <div id="IdNombreTecnica">
-    <div class="headers">ID Especialista</div>
-    <input type="number" class="campos" value="{{infoEspecialista['IdEspecialista']}}" disabled/>
-    <div class="headers">Nombre</div>
-    <input type="text" class="campos" value="{{infoEspecialista['NombreE']}}"/>
-    <div class="headers">Celular</div>
-    <input type="number" class="campos" value="{{infoEspecialista['Celular']}}"/>
-    <div class="headers">Tecnica</div>
-    <select id="comboTecnica" value="{{infoEspecialista['IdTecnica']}}">
-      <option value=1>VFD</option>
-      <option value=2>BT</option>
-      <option value=3>AUT</option>
-      <option value=4>AOS</option>
-      <option value=5>MOT</option>
-    </select>
+      <div class="headers">
+          <div class="styledInput">
+            <input type="number" class="campos" placeholder=" " value="{{infoEspecialista['IdEspecialista']}}" readonly/>
+            <label>Id Especialista</label>
+          </div>
+        </div>
+        <div class="headers">
+          <div class="styledInput">
+            <input type="text" class="campos" placeholder=" " value="{{infoEspecialista['NombreE']}}"/>
+            <label>Nombre</label>
+          </div>
+        </div>
+        <div class="headers">
+          <div class="styledInput">
+            <input type="number" class="campos" maxlength="10" placeholder=" " value="{{infoEspecialista['Celular']}}"/>
+            <label>Celular</label>
+          </div>
+        </div>
+        <div class="headers">Tecnica</div>
+        <select id="comboTecnica">
+          <option value=1>VFD</option>
+          <option value=2>BT</option>
+          <option value=3>AUT</option>
+          <option value=4>AOS</option>
+          <option value=5>MOT</option>
+        </select>
   </div>
   <div id="demasDatos">
-    <div id="primeraLinea">
-      <div id="headerFecha"> Fecha Nacimiento<br>
-        <input type="date" name="fechaNacimiento" id="fechaN" value="{{infoEspecialista['FechaNacimiento'].split('T')[0]}}">
+      <div id="primeraLinea">
+        <div id="headerFecha">
+          <div class="styledInput">
+            <input type="date" name="fechaNacimiento" id="fechaN" placeholder="Fecha Nacimiento" value="{{infoEspecialista['FechaNacimiento'].split('T')[0]}}">
+          </div>
+        </div>
+        <div id=headerCeCo>
+          <div class="styledInput">
+            <input type="text" id="CeCo" placeholder=" " autocomplete="off" value="{{infoEspecialista['CeCo']}}"/>
+            <label>CeCo</label>
+          </div>
+        </div>
       </div>
-      <div id=headerCeCo> CeCo <br>
-        <input type="text" id="CeCo" value="{{infoEspecialista['CeCo']}}"/>
-      </div>
-      <div id=headerGID> GID <br>
-        <input type="text" id="GID" value="{{infoEspecialista['GID']}}"/>
-      </div>
-    </div>
 
-    <div id="segundaLinea">
-      <div id="headerCedula"> Cedula Ciudadania<br>
-        <input type="number" name="cedula" id="cedulaC" value="{{infoEspecialista['CedulaCiudadania']}}">
+      <div id="segundaLinea">
+        <div id=headerGID>
+          <div class="styledInput">
+            <input type="text" id="GID" placeholder=" " autocomplete="off" value="{{infoEspecialista['GID']}}"/>
+            <label>GID</label>
+          </div>
+        </div>
+        <div id="headerCedula">
+          <div class="styledInput">
+            <input type="number" name="cedula" id="cedulaC" placeholder=" " autocomplete="off" value="{{infoEspecialista['CedulaCiudadania']}}">
+            <label>Cedula Cuidadania</label>
+          </div>
+        </div>
       </div>
-      <div id="headerLugarE"> Lugar Expedicion C.C.<br>
-        <input type="text" name="lugar" id="lugarE" value="{{infoEspecialista['LugarExpedicion']}}">
-      </div>
-      <div id="headerTarjetaIA"> Tarjeta Ingreso Argos<br>
-        <input type="text" name="tarjetaIA" id="tarjetaIA" value="{{infoEspecialista['TarjetaIngresoArgos']}}">
+      <div id="terceraLinea">
+        <div id="headerLugarE">
+          <div class="styledInput">
+            <input type="text" name="lugar" id="lugarE" placeholder=" " autocomplete="off" value="{{infoEspecialista['LugarExpedicion']}}">
+            <label>Lugar Expedicion C.C.</label>
+          </div>
+        </div>
+        <div id="headerTarjetaIA">
+          <div class="styledInput">
+            <input type="text" name="tarjetaIA" id="tarjetaIA" placeholder=" " autocomplete="off" value="{{infoEspecialista['TarjetaIngresoArgos']}}">
+            <label>Tarjeta Ingreso Argos</label>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
   </form>
   <div id="botones">
   <button (click)="editarEspecialista()" id="enviar">Modificar Especialista</button><br>

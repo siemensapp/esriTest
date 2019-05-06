@@ -5,13 +5,19 @@
   </div>
   <form id="formulario">
     <div id="infoCliente">
-    <div class="headerCliente">Cliente
-        <input type="text" name="nombreCliente" id="nCliente" autocomplete="off">
+      <div class="headerCliente">
+        <div class="styledInput">
+          <input type="text" name="nombreCliente" id="nCliente" autocomplete="off" placeholder=" ">
+          <label>Cliente</label>
+        </div>
+      </div>
+      <div class="headerPlanta">
+        <div class="styledInput">
+          <input type="text" name="nombrePlanta" id="nPlanta" autocomplete="off" placeholder=" ">
+          <label>Planta</label>
+        </div>
+      </div>
     </div>
-    <div class="headerPlanta">Planta
-        <input type="text" name="nombrePlanta" id="nPlanta" autocomplete="off">
-    </div>
-  </div>
     <div class="headerCombo">
       Seleccionar Especialista
     </div>
@@ -46,18 +52,29 @@
       </div>
     </div>
     <div id="infoContacto">
-      <div id="name"> Nombre Contacto
-        <input type="text" name="nombreContacto" id="nContacto" autocomplete="off">
-      </div>
-      <div id="cel"> Telefono Contacto
-        <input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off" maxlength="10">
-      </div>
-      <div id="email"> Email Contacto
-          <input type="text" name="emailContacto" id="eContacto" autocomplete="off">
+      <div id="name">
+        <div class="styledInput">
+          <input type="text" name="nombreContacto" id="nContacto" autocomplete="off" placeholder=" ">
+          <label>Nombre Contacto</label>
         </div>
+      </div>
+      <div id="cel">
+        <div class="styledInput">
+          <input type="tel" name="telefonoContacto" id="tContacto" autocomplete="off" maxlength="10" placeholder=" ">
+          <label>Telefono Contacto</label>
+        </div>
+      </div>
     </div>
-    <div id="descripcion"> Descripcion Trabajo
-      <textarea maxlength="255" name="descripcionAsignacion" id="desc" autocomplete="off"></textarea>
+    <div id="email">
+      <div class="styledInput">
+        <input type="text" name="emailContacto" id="eContacto" autocomplete="off" placeholder=" ">
+        <label>Email Contacto</label>
+      </div>
+    </div>
+    <div id="descripcion"> Descripcion Asignacion
+      <div class="styledInput">
+        <textarea maxlength="255" name="descripcionAsignacion" id="desc" autocomplete="off" placeholder=" "></textarea>
+      </div>
     </div>
     <div id="labelSitio"><label>Nombre Sitio: </label><span id="ubicacion"></span></div>
   </form>

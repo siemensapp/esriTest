@@ -86,7 +86,10 @@ export class EditarEspecialistaComponent implements OnInit {
   constructor(private httpService: HttpClient, private DataRetriever: DataRetrieverService, private ActivatedRoute: ActivatedRoute, private router: Router) { }
   ResultadoField : JSON;
   ngOnInit() {
-    this.DataRetriever.infoEspecialista.subscribe(infoEspecialista => this.infoEspecialista = infoEspecialista);
+    this.DataRetriever.infoEspecialista.subscribe(infoEspecialista => {this.infoEspecialista = infoEspecialista;
+    var combo = <HTMLSelectElement> document.getElementById('comboTecnica');
+    combo.options[this.infoEspecialista['IdTecnica']-1].selected = true;
+    });
     console.log(this.infoEspecialista);
   }
 

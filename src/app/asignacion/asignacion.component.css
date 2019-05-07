@@ -228,13 +228,13 @@
 
 #nContacto {
   height: 30px;
-  width: 110%;
+  width: 130%;
   font-size: 14px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #cel {
-  margin-left: 4%;
+  margin-left: 12%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
 }

@@ -205,7 +205,7 @@ export class CronogramaComponent implements OnInit {
     //Obtener las asignaciones del mes y año de la fecha de HOY 
     var fechaHoy=new Date().toISOString();
     var fechaHoyMA=fechaHoy.split("-")[0] + "-" + fechaHoy.split("-")[1];
-    var diasDelMes= new Date(parseInt(fechaHoy.split("-")[0]), parseInt(fechaHoy.split("-")[1]), 0).getDate();
+    var diasDelMes= new Date(parseInt(fechaHoy.split("-")[0]), parseInt(fechaHoy.split("-")[1]), 0).getDate();    
     this.setFecha(fechaHoyMA+"-"+"01");
     var tabla=document.getElementById("tablaAsignacionesID");
     tabla.addEventListener("click", (event) => {
